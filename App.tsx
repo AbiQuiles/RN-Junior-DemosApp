@@ -1,0 +1,47 @@
+import { StatusBar } from 'expo-status-bar';
+import React, {useState} from 'react';
+import {View, StyleSheet} from 'react-native';
+import TodoInputView from "./ViewComponents/TodoInputView";
+import {TodoItem} from "./ViewComponents/TodoItemView";
+import TodoListView from "./ViewComponents/TodoListView";
+
+export default function App(){
+    return (MainAppViews());
+}
+
+const MainAppViews = () => {
+    const [text, setChangeText] = useState<string>('')
+    const [todoItems, setTodoItems] = useState<TodoItem[]>([])
+    const onChangeListener = (newItem: string) => setChangeText(newItem)
+    const setNewItem = () => {
+        let newTodoItems: TodoItem = {
+            task: text,
+            key: `${text}-${Math.random()}`
+        }
+
+        setTodoItems((currentTodoItems => [
+                ...currentTodoItems,
+                newTodoItems
+            ])
+        )
+    }
+    return (
+        <View style={MainAppStyles.containerView} >
+            <TodoInputView
+                onChangeListener = {onChangeListener}
+                setNewItem = {setNewItem}
+                />
+            <TodoListView todoItems={todoItems}/>
+            <StatusBar style="auto"/>
+        </View>
+    )
+}
+
+const MainAppStyles = StyleSheet.create({
+    containerView: {
+        flex: 1,
+        paddingTop: '15%',
+        alignItems: 'stretch',
+        paddingHorizontal: 15,
+    }
+});

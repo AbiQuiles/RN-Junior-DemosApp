@@ -8,7 +8,6 @@ interface TodoInputViewProps {
 }
 
 export default function TodoInputView({onChangeListener, setNewItem}: TodoInputViewProps) {
-
     return (
         <View style={TodoInputStyles.InputTextView}>
             <TextInput

@@ -27,6 +27,7 @@ export default function TodoListView({todoItems}: TodoListViewProps) {
                 <TodoItemView
                     key={itemsData.item.key}
                     task={itemsData.item.task}
+                    pressEvent={itemsData.item.pressEvent}
                 />
             }
             keyExtractor={(item) =>

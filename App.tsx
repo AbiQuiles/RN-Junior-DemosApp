@@ -13,10 +13,14 @@ const MainAppViews = () => {
     const [text, setChangeText] = useState<string>('')
     const [todoItems, setTodoItems] = useState<TodoItem[]>([])
     const onChangeListener = (newItem: string) => setChangeText(newItem)
+
     const setNewItem = () => {
+        const itemKey = `${text}-${Math.random()}`
+
         let newTodoItems: TodoItem = {
             task: text,
-            key: `${text}-${Math.random()}`
+            key: itemKey,
+            pressEvent: () => setItemPressEvent(itemKey)
         }
 
         setTodoItems((currentTodoItems => [
@@ -25,6 +29,29 @@ const MainAppViews = () => {
             ])
         )
     }
+
+
+    function setItemPressEvent(itemKey: string): void {
+        const itemToRemove = todoItems.findIndex(
+            (item) => item.key === itemKey
+        )
+        setTodoItems(currentTodoItems => {
+                return currentTodoItems.filter((item) => {
+                    //console.log('Item key:', item.key)
+                    //console.log('Delete item:', itemKey)
+
+                    if (itemToRemove) { // Check if item exists
+                        console.log("Success Msg: Item Deleted: ", item);
+                    } else {
+                        console.error("Error MSg: Item not found in the list");
+                    }
+
+                    return item.key !== itemKey
+                })
+            }
+        )
+    }
+
     return (
         <View style={MainAppStyles.containerView} >
             <TodoInputView

@@ -1,7 +1,6 @@
 import {Button, StyleSheet, TextInput, View} from "react-native";
 import React from "react";
 
-
 interface TodoInputViewProps {
     onChangeListener?: (newItem: string) => void
     setNewItem?: () => void

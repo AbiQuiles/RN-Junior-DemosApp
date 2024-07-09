@@ -1,18 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {Pressable, StyleSheet, Text, View} from "react-native";
 
 type TodoItem = {
     task: string,
-    key: string
+    key: string,
+    pressEvent: () => void
 }
 
 export default function TodoItemView(itemsData: TodoItem) {
     return (
-        <View style={TodoItemStyles.listItemView}>
-            <Text style={TodoItemStyles.listItemText}>
-                {itemsData.task}
-            </Text>
-        </View>
+        <Pressable onPress={itemsData.pressEvent/*.bind(itemsData.key)*/}>
+            <View style={TodoItemStyles.listItemView}>
+                <Text style={TodoItemStyles.listItemText}>
+                    {itemsData.task}
+                </Text>
+            </View>
+        </Pressable>
     )
 }
 

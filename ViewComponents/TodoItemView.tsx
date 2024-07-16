@@ -9,23 +9,30 @@ type TodoItem = {
 
 export default function TodoItemView(itemsData: TodoItem) {
     return (
-        <Pressable onPress={itemsData.pressEvent/*.bind(itemsData.key)*/}>
-            <View style={TodoItemStyles.listItemView}>
-                <Text style={TodoItemStyles.listItemText}>
-                    {itemsData.task}
-                </Text>
-            </View>
-        </Pressable>
+        <View style={TodoItemStyles.container}>
+            <Pressable onPress={itemsData.pressEvent}>
+                <View style={TodoItemStyles.listItemView}>
+                    <Text style={TodoItemStyles.listItemText}>
+                        {itemsData.task}
+                    </Text>
+                </View>
+            </Pressable>
+        </View>
     )
 }
 
 const TodoItemStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingHorizontal: 45
+    },
     listItemView: {
+        alignItems: 'center',
         padding: 5,
-        marginTop: 5,
-        borderRadius: 5,
+        marginTop: 7,
+        borderRadius: 15,
         color: "white",
-        backgroundColor: '#58aad6',
+        backgroundColor: '#58aad6'
     },
     listItemText: {
         color: 'white'

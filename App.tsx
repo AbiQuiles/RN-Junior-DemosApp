@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import {View, StyleSheet, Modal, Text, Pressable} from 'react-native';
-import TodoInputView from "./ViewComponents/TodoInputView";
-import {TodoItem} from "./ViewComponents/TodoItemView";
-import TodoListView from "./ViewComponents/TodoListView";
-import {GetDeviceTextStyling, GetDeviceViewStyling} from "./ViewComponents/DeviceStlingManager";
-import {BackString, TodoListString} from "./ViewComponents/StringRecources";
+import {View, StyleSheet, Modal, Text, Pressable, Image} from 'react-native';
+import TodoInputView from "./viewComponents/TodoInputView";
+import {TodoItem} from "./viewComponents/TodoItemView";
+import TodoListView from "./viewComponents/TodoListView";
+import {GetDeviceTextStyling, GetDeviceViewStyling} from "./viewComponents/DeviceStringManager";
+import {BackString, TodoListString} from "./viewComponents/StringRecources";
 
 export default function App(){
     return MainAppViews();
@@ -68,6 +68,10 @@ const MainAppViews = () => {
             <Pressable
                 onPress={showTodoListView}
                 style={MainAppStyles.todoListButton}>
+                <Image
+                    style={MainAppStyles.imageStyling}
+                    source={require('./assets/images/todoList.png')}>
+                </Image>
                 <Text style={MainAppStyles.todoListText}>
                     {TodoListString}
                 </Text>
@@ -124,6 +128,11 @@ const MainAppStyles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: '#2196F3'
     },
+    imageStyling : {
+        width: 50,
+        height: 50,
+        margin: 5
+    }
 });
 
 const MainAppModalStylesIOS = StyleSheet.create({

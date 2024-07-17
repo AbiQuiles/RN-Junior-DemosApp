@@ -9,10 +9,10 @@ type TodoItem = {
 
 export default function TodoItemView(itemsData: TodoItem) {
     return (
-        <View style={TodoItemStyles.container}>
+        <View style={styles.container}>
             <Pressable onPress={itemsData.pressEvent}>
-                <View style={TodoItemStyles.listItemView}>
-                    <Text style={TodoItemStyles.listItemText}>
+                <View style={styles.listItemView}>
+                    <Text style={styles.listItemText}>
                         {itemsData.task}
                     </Text>
                 </View>
@@ -21,7 +21,7 @@ export default function TodoItemView(itemsData: TodoItem) {
     )
 }
 
-const TodoItemStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 45
@@ -36,7 +36,7 @@ const TodoItemStyles = StyleSheet.create({
     },
     listItemText: {
         color: 'white'
-    }
+    },
 });
 
 export { TodoItem }

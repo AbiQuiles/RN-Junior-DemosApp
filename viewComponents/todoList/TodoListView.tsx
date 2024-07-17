@@ -21,7 +21,7 @@ interface TodoListViewProps {
 
 export default function TodoListView({todoItems}: TodoListViewProps) {
     return (
-        <FlatList style={TodoListStyles.listView}
+        <FlatList style={styles.listView}
             data={todoItems}
             renderItem={itemsData =>
                 <TodoItemView
@@ -37,7 +37,7 @@ export default function TodoListView({todoItems}: TodoListViewProps) {
     )
 }
 
-const TodoListStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     listView: {
         marginBottom: 15
     }

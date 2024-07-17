@@ -1,7 +1,7 @@
 import {Button, Image, StyleSheet, TextInput, View} from "react-native";
 import React from "react";
-import {GetDeviceViewStyling} from "./DeviceStringManager";
-import {AddItemString, AddTodoItemString} from "./StringRecources";
+import {GetDeviceViewStyling} from "../DeviceStringManager";
+import {AddItemString, AddTodoItemString} from "../StringRecources";
 
 interface TodoInputViewProps {
     onChangeListener?: (newItem: string) => void
@@ -17,7 +17,7 @@ export default function TodoInputView({onChangeListener, setNewItem}: TodoInputV
             <View style={styles.imageContainer}>
                 <Image
                     style={styles.imageStyling}
-                    source={require('../assets/images/todoList.png')}>
+                    source={require('../../assets/images/todoList.png')}>
                 </Image>
             </View>
             <View style={GetDeviceViewStyling(

@@ -1,7 +1,7 @@
-import {Button, Image, StyleSheet, TextInput, View} from "react-native";
+import {Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React from "react";
 import {GetDeviceViewStyling} from "../DeviceStringManager";
-import {AddItemString, AddTodoItemString} from "../StringRecources";
+import {AddTodoItemString} from "../StringRecources";
 
 interface TodoInputViewProps {
     onChangeListener?: (newItem: string) => void
@@ -16,7 +16,7 @@ export default function TodoInputView({onChangeListener, setNewItem}: TodoInputV
         )}>
             <View style={styles.imageContainer}>
                 <Image
-                    style={styles.imageStyling}
+                    style={styles.todoListImageStyling}
                     source={require('../../assets/images/todoList.png')}>
                 </Image>
             </View>
@@ -32,11 +32,16 @@ export default function TodoInputView({onChangeListener, setNewItem}: TodoInputV
                     placeholder= {AddTodoItemString}
                     onChangeText={onChangeListener}
                 />
-                <Button
-                    title={AddItemString}
-                    color='#17a2f3'
-                    onPress={setNewItem}
-                />
+                <Pressable
+                    style={styles.addItemContainer}
+                    onPress={setNewItem}>
+                    <Image
+                        style={styles.addImageStyling}
+                        source={require('../../assets/images/add.png')}>
+                    </Image>
+                    <Text style={styles.addTextStyling}>Add Item</Text>
+                </Pressable>
+
             </View>
         </View>
     )
@@ -46,10 +51,27 @@ const styles = StyleSheet.create({
     imageContainer: {
         alignItems: "center",
     },
-    imageStyling : {
+    addItemContainer: {
+        flexDirection: "row"
+    },
+    todoListImageStyling : {
         width: 120,
         height: 140,
         margin: 5
+    },
+    addTextStyling: {
+        fontWeight: "bold",
+        fontSize: 20,
+        lineHeight: 29,
+        letterSpacing: 0.25,
+        color: '#0b80c1',
+    },
+    addImageStyling : {
+        width: 20,
+        height: 20,
+        margin: 5,
+        borderRadius: 10,
+        backgroundColor: '#17a2f3'
     }
 })
 
@@ -63,14 +85,16 @@ const stylesIOS = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 20,
         borderBottomColor: '#cccccc',
-        borderBottomWidth: 1,
+        borderBottomWidth: 2,
     },
     inputText: {
-        marginRight: 15,
-        width: '80%',
-        padding: 6,
-        borderWidth: 1,
-        borderColor: '#cccccc'
+        marginRight: 4,
+        width: '70%',
+        padding: 10,
+        borderRadius:10,
+        borderWidth: 2,
+        borderColor: '#cccccc',
+        backgroundColor: '#f4f4f4'
     }
 });
 
@@ -82,13 +106,15 @@ const stylesAndroid = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 20,
         borderBottomColor: '#cccccc',
-        borderBottomWidth: 1,
+        borderBottomWidth: 2,
     },
     inputText: {
-        marginRight: 15,
-        width: '80%',
-        padding: 6,
-        borderWidth: 1,
-        borderColor: '#cccccc'
-    }
+        marginRight: 6,
+        width: '70%',
+        padding: 10,
+        borderRadius:10,
+        borderWidth: 2,
+        borderColor: '#cccccc',
+        backgroundColor: '#f4f4f4'
+    },
 });

@@ -1,7 +1,7 @@
 import {Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React from "react";
 import {GetDeviceViewStyling} from "../DeviceStringManager";
-import {AddTodoItemString} from "../StringRecources";
+import {AddItemString, AddTodoItemString} from "../StringRecources";
 
 interface TodoInputViewProps {
     onChangeListener?: (newItem: string) => void
@@ -16,7 +16,7 @@ export default function TodoInputView({onChangeListener, setNewItem}: TodoInputV
         )}>
             <View style={styles.imageContainer}>
                 <Image
-                    style={styles.todoListImageStyling}
+                    style={styles.mainImageStyling}
                     source={require('../../assets/images/todoList.png')}>
                 </Image>
             </View>
@@ -39,7 +39,7 @@ export default function TodoInputView({onChangeListener, setNewItem}: TodoInputV
                         style={styles.addImageStyling}
                         source={require('../../assets/images/add.png')}>
                     </Image>
-                    <Text style={styles.addTextStyling}>Add Item</Text>
+                    <Text style={styles.addTextStyling}>{AddItemString}</Text>
                 </Pressable>
 
             </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     addItemContainer: {
         flexDirection: "row"
     },
-    todoListImageStyling : {
+    mainImageStyling : {
         width: 120,
         height: 140,
         margin: 5

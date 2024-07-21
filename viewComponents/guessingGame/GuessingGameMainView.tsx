@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Image, Modal, Pressable, StyleSheet, Text, View} from "react-native";
-import {GetDeviceTextStyling, GetDeviceViewStyling} from "../DeviceStyleManager";
-import {BackString, GuessingGameString} from "../StringRecources";
+import {GuessingGameString} from "../StringRecources";
 import GuessingGameView from "./GuessingGameView";
 import GuessingGameStartView from "./GuessingGameStartView";
+import MainBackButton from "../mainViewComponents/MainBackButton";
 
 export default function GuessingGameMainView() {
     const [modalVisibility, setModalVisibility] = useState(false)
@@ -22,7 +22,7 @@ export default function GuessingGameMainView() {
                 onPress={showTodoListView}
                 style={styles.mainButton}>
                 <Image
-                    style={styles.imageStyling}
+                    style={styles.mainImage}
                     source={require('../../assets/images/gameController.png')}>
                 </Image>
                 <Text style={styles.mainText}>
@@ -30,25 +30,9 @@ export default function GuessingGameMainView() {
                 </Text>
             </Pressable>
             <Modal
-                style={GetDeviceViewStyling(
-                    modalStylesIOS.container,
-                    modalStylesAndroid.container
-                )}
                 animationType={'slide'}
                 visible={modalVisibility}>
-                <Pressable
-                    onPress={showTodoListView}
-                    style={GetDeviceViewStyling(
-                        modalStylesIOS.backButton,
-                        modalStylesAndroid.backButton
-                    )}>
-                    <Text style={GetDeviceTextStyling(
-                        modalStylesIOS.backButtonText,
-                        modalStylesAndroid.backButtonText
-                    )}>
-                        {BackString}
-                    </Text>
-                </Pressable>
+                <MainBackButton pressEvent={showTodoListView} />
                 <GuessingGameView/>
                 <GuessingGameStartView/>
             </Modal>
@@ -78,49 +62,9 @@ const styles= StyleSheet.create({
         alignItems: "center",
         backgroundColor: '#2196F3'
     },
-    imageStyling : {
+    mainImage : {
         width: 50,
         height: 50,
         margin: 5
-    }
-});
-
-const modalStylesIOS = StyleSheet.create({
-    container: {
-        flex: 2,
-        paddingHorizontal: '15%',
-        marginVertical: "15%",
-        alignItems: 'center',
-    },
-    backButton: {
-        marginHorizontal: "4%",
-        marginTop: '15%',
-        marginBottom: 20,
-    },
-    backButtonText: {
-        fontSize: 18,
-        lineHeight: 21,
-        letterSpacing: 0.25,
-        color: '#0b80c1',
     },
 });
-
-const modalStylesAndroid = StyleSheet.create({
-    container: {
-        flex: 2,
-        paddingHorizontal: '15%',
-        marginVertical: "15%",
-        alignItems: 'center',
-    },
-    backButton: {
-        marginHorizontal: "4%",
-        marginVertical: "5%",
-        marginBottom: 20,
-    },
-    backButtonText: {
-        fontSize: 18,
-        lineHeight: 21,
-        letterSpacing: 0.25,
-        color: '#0b80c1',
-    },
-})

@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {TodoItem} from "./TodoItemView";
 import {Image, Modal, Pressable, StyleSheet, Text, View} from "react-native";
-import {BackString, TodoListString} from "../StringRecources";
-import {GetDeviceTextStyling, GetDeviceViewStyling} from "../DeviceStyleManager";
+import {TodoListString} from "../StringRecources";
 import TodoInputView from "./TodoInputView";
 import TodoListView from "./TodoListView";
+import MainBackButton from "../mainViewComponents/MainBackButton";
 
 export default function TodoListMainView() {
     const [modalVisibility, setModalVisibility] = useState(false)
@@ -72,25 +72,9 @@ export default function TodoListMainView() {
                 </Text>
             </Pressable>
             <Modal
-                style={GetDeviceViewStyling(
-                    modalStylesIOS.container,
-                    modalStylesAndroid.container
-                )}
                 animationType={'slide'}
                 visible={modalVisibility}>
-                <Pressable
-                    style={GetDeviceViewStyling(
-                        modalStylesIOS.backButton,
-                        modalStylesAndroid.backButton
-                    )}
-                    onPress={showTodoListView}>
-                    <Text style={GetDeviceTextStyling(
-                        modalStylesIOS.backButtonText,
-                        modalStylesAndroid.backButtonText
-                    )}>
-                        {BackString}
-                    </Text>
-                </Pressable>
+                <MainBackButton pressEvent={showTodoListView} />
                 <TodoInputView
                     onChangeListener={onChangeListener}
                     setNewItem={setNewItem}/>
@@ -127,44 +111,4 @@ const styles= StyleSheet.create({
         height: 50,
         margin: 5
     }
-});
-
-const modalStylesIOS = StyleSheet.create({
-    container: {
-        flex: 2,
-        paddingHorizontal: '15%',
-        marginVertical: "15%",
-        alignItems: 'center',
-    },
-    backButton: {
-        marginHorizontal: "4%",
-        marginTop: '15%',
-        marginBottom: 20,
-    },
-    backButtonText: {
-        fontSize: 18,
-        lineHeight: 21,
-        letterSpacing: 0.25,
-        color: '#0b80c1',
-    },
-});
-
-const modalStylesAndroid = StyleSheet.create({
-    container: {
-        flex: 2,
-        paddingHorizontal: '15%',
-        marginVertical: "15%",
-        alignItems: 'center',
-    },
-    backButton: {
-        marginHorizontal: "4%",
-        marginVertical: "5%",
-        marginBottom: 20,
-    },
-    backButtonText: {
-        fontSize: 18,
-        lineHeight: 21,
-        letterSpacing: 0.25,
-        color: '#0b80c1',
-    },
 });

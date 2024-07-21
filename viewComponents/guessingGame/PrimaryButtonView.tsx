@@ -3,7 +3,7 @@ import {Pressable, StyleProp, StyleSheet, Text, View, ViewStyle} from "react-nat
 
 interface PrimaryButtonProps {
     styleContainer?: StyleProp<ViewStyle>
-    textValue: string
+    text: string
     pressEvent: () => void
 }
 
@@ -22,7 +22,7 @@ export default function PrimaryButtonView(props: PrimaryButtonProps) {
                 style={({pressed}) => combinedStyles(style.press, pressed)}
                 onPress={props.pressEvent}>
                 <Text style={style.text}>
-                    {props.textValue}
+                    {props.text}
                 </Text>
             </Pressable>
         </View>

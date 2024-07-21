@@ -1,6 +1,7 @@
 import React from "react";
 import {StyleSheet, TextInput, View} from "react-native";
 import PrimaryButtonView from "./PrimaryButtonView";
+import {GuessingConfirmString, GuessingCancelString} from "../StringRecources";
 
 export default function GuessingGameStartView() {
 
@@ -21,11 +22,11 @@ export default function GuessingGameStartView() {
             <View style={style.containerButtons}>
                 <PrimaryButtonView
                     styleContainer={style.confirmBtn}
-                    textValue={'Confirm'}
+                    text={GuessingConfirmString}
                     pressEvent={pressConfirmEvent}/>
                 <PrimaryButtonView
                     styleContainer={style.cancelBtn}
-                    textValue={'Cancel'}
+                    text={GuessingCancelString}
                     pressEvent={pressCancelEvent}/>
             </View>
         </View>

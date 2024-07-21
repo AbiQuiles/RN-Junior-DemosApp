@@ -1,6 +1,6 @@
 import {Image, StyleSheet, View} from "react-native";
 import React from "react";
-import {GetDeviceViewStyling} from "../DeviceStringManager";
+import {GetDeviceViewStyling} from "../DeviceStyleManager";
 
 export default function GuessingGameView() {
 

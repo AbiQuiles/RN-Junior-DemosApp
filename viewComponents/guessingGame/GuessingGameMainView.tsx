@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {Image, Modal, Pressable, StyleSheet, Text, View} from "react-native";
-import {GetDeviceTextStyling, GetDeviceViewStyling} from "../DeviceStringManager";
+import {GetDeviceTextStyling, GetDeviceViewStyling} from "../DeviceStyleManager";
 import {BackString, GuessingGameString} from "../StringRecources";
 import GuessingGameView from "./GuessingGameView";
+import GuessingGameStartView from "./GuessingGameStartView";
 
 export default function GuessingGameMainView() {
     const [modalVisibility, setModalVisibility] = useState(false)
@@ -19,12 +20,12 @@ export default function GuessingGameMainView() {
         <View>
             <Pressable
                 onPress={showTodoListView}
-                style={styles.todoListButton}>
+                style={styles.mainButton}>
                 <Image
                     style={styles.imageStyling}
                     source={require('../../assets/images/gameController.png')}>
                 </Image>
-                <Text style={styles.todoListText}>
+                <Text style={styles.mainText}>
                     {GuessingGameString}
                 </Text>
             </Pressable>
@@ -49,6 +50,7 @@ export default function GuessingGameMainView() {
                     </Text>
                 </Pressable>
                 <GuessingGameView/>
+                <GuessingGameStartView/>
             </Modal>
         </View>
     )
@@ -61,14 +63,14 @@ const styles= StyleSheet.create({
         paddingTop: '15%',
         paddingHorizontal: 15,
     },
-    todoListText : {
+    mainText : {
         fontSize: 18,
         lineHeight: 21,
         letterSpacing: 0.25,
         color: 'white',
         fontWeight: 'bold',
     },
-    todoListButton: {
+    mainButton: {
         borderRadius: 20,
         padding: 15,
         elevation: 2,

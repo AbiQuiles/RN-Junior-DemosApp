@@ -19,10 +19,10 @@ interface TodoListViewProps {
     todoItems?: TodoItem[]
 }
 
-export default function TodoListView({todoItems}: TodoListViewProps) {
+export default function TodoListView(todoItems: TodoListViewProps) {
     return (
         <FlatList style={styles.listView}
-            data={todoItems}
+            data={todoItems.todoItems}
             renderItem={itemsData =>
                 <TodoItemView
                     key={itemsData.item.key}

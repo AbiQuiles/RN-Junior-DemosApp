@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {TodoItem} from "./TodoItemView";
 import {Image, Modal, Pressable, StyleSheet, Text, View} from "react-native";
 import {BackString, TodoListString} from "../StringRecources";
-import {GetDeviceTextStyling, GetDeviceViewStyling} from "../DeviceStringManager";
+import {GetDeviceTextStyling, GetDeviceViewStyling} from "../DeviceStyleManager";
 import TodoInputView from "./TodoInputView";
 import TodoListView from "./TodoListView";
 
@@ -62,12 +62,12 @@ export default function TodoListMainView() {
         <View>
             <Pressable
                 onPress={showTodoListView}
-                style={styles.todoListButton}>
+                style={styles.mainButton}>
                 <Image
                     style={styles.imageStyling}
                     source={require('../../assets/images/todoList.png')}>
                 </Image>
-                <Text style={styles.todoListText}>
+                <Text style={styles.mainText}>
                     {TodoListString}
                 </Text>
             </Pressable>
@@ -107,14 +107,14 @@ const styles= StyleSheet.create({
         paddingTop: '15%',
         paddingHorizontal: 15,
     },
-    todoListText : {
+    mainText : {
         fontSize: 18,
         lineHeight: 21,
         letterSpacing: 0.25,
         color: 'white',
         fontWeight: 'bold',
     },
-    todoListButton: {
+    mainButton: {
         borderRadius: 20,
         padding: 15,
         elevation: 2,

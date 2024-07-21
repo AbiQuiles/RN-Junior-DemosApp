@@ -1,6 +1,6 @@
 import {Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React from "react";
-import {GetDeviceViewStyling} from "../DeviceStringManager";
+import {GetDeviceViewStyling} from "../DeviceStyleManager";
 import {AddItemString, AddTodoItemString} from "../StringRecources";
 
 interface TodoInputViewProps {

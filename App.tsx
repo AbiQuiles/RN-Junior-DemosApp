@@ -12,10 +12,10 @@ const MainAppViews = () => {
 
     return (
         <View style={style.container}>
-            <View style={style.todoListContainer}>
+            <View style={style.demosContainer}>
                 <TodoListMainView/>
             </View>
-            <View style={style.guessingGameContainer}>
+            <View style={style.demosContainer}>
                 <GuessingGameMainView/>
             </View>
             <StatusBar style="auto"/>
@@ -26,14 +26,10 @@ const MainAppViews = () => {
 const style = StyleSheet.create({
     container: {
         alignItems: 'center',
-        flexDirection: "column",
         paddingTop: '15%',
-        paddingHorizontal: 15,
+        //paddingHorizontal: 15,
     },
-    todoListContainer: {
-        padding: 7
+    demosContainer: {
+        padding: 8
     },
-    guessingGameContainer: {
-        padding: 7
-    }
 })

@@ -1,5 +1,5 @@
 import React from "react";
-import {Pressable, StyleProp, StyleSheet, Text, View, ViewStyle} from "react-native";
+import {Pressable, StyleProp, StyleSheet, Text, ViewStyle} from "react-native";
 
 interface PrimaryButtonProps {
     styleContainer?: StyleProp<ViewStyle>
@@ -13,19 +13,17 @@ export default function PrimaryButtonView(props: PrimaryButtonProps) {
         return [fileStyle, props.styleContainer]
     }*/
 
-    const combinedStyles = (fileStyle: StyleProp<any>, isPress: boolean) => {
+    const pressStylesHandler = (fileStyle: StyleProp<any>, isPress: boolean) => {
         return isPress ?  [fileStyle, props.styleContainer] : props.styleContainer
     }
     return (
-        <View>
             <Pressable
-                style={({pressed}) => combinedStyles(style.press, pressed)}
+                style={({pressed}) => pressStylesHandler(style.press, pressed)}
                 onPress={props.pressEvent}>
                 <Text style={style.text}>
                     {props.text}
                 </Text>
             </Pressable>
-        </View>
     )
 }
 

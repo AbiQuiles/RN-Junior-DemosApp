@@ -17,15 +17,16 @@ export default function GuessingGameStartView() {
         <View style={style.container}>
             <TextInput
                 style={style.inputText}
+                placeholder={"12..."}
                 keyboardType={"numeric"}
                 maxLength={2}/>
             <View style={style.containerButtons}>
                 <PrimaryButtonView
-                    styleContainer={style.confirmBtn}
+                    styleContainer={style.confirmButton}
                     text={GuessingConfirmString}
                     pressEvent={pressConfirmEvent}/>
                 <PrimaryButtonView
-                    styleContainer={style.cancelBtn}
+                    styleContainer={style.cancelButton}
                     text={GuessingCancelString}
                     pressEvent={pressCancelEvent}/>
             </View>
@@ -43,6 +44,7 @@ const style = StyleSheet.create({
         width: '70%',
         padding: 10,
         margin: 10,
+        textAlign: 'center',
         fontSize: 28,
         borderRadius: 7,
         borderWidth: 1.3,
@@ -51,13 +53,13 @@ const style = StyleSheet.create({
     containerButtons: {
         flexDirection: "row",
     },
-    confirmBtn: {
+    confirmButton: {
         margin: 10,
         backgroundColor: "#1a8eaa",
         borderRadius: 10,
         borderWidth: 1.3,
     },
-    cancelBtn: {
+    cancelButton: {
         alignSelf: "center",
         margin: 10,
         backgroundColor: "#d33a3a",

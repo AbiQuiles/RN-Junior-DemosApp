@@ -47,6 +47,7 @@ const modalStyles = StyleSheet.create({
         fontSize: 18,
         lineHeight: 21,
         letterSpacing: 0.25,
+        fontWeight: 'bold',
         color: 'black',
     },
     backImage: {

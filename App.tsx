@@ -25,6 +25,7 @@ const MainAppViews = () => {
 
 const style = StyleSheet.create({
     container: {
+        //flex: 1,
         alignItems: 'center',
         paddingTop: '15%',
         //paddingHorizontal: 15,

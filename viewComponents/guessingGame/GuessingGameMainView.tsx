@@ -32,7 +32,7 @@ export default function GuessingGameMainView() {
             <Modal
                 animationType={'slide'}
                 visible={modalVisibility}>
-                <MainBackButton pressEvent={showTodoListView} />
+                <MainBackButton pressEvent={showTodoListView}/>
                 <GuessingGameView/>
                 <GuessingGameStartView/>
             </Modal>
@@ -42,10 +42,9 @@ export default function GuessingGameMainView() {
 
 const styles= StyleSheet.create({
     container: {
-        flex: 2,
-        alignItems: 'center',
-        paddingTop: '15%',
-        paddingHorizontal: 15,
+        //alignItems: 'center',
+        //paddingTop: '15%',
+        //paddingHorizontal: 15,
     },
     mainText : {
         fontSize: 18,
@@ -66,5 +65,8 @@ const styles= StyleSheet.create({
         width: 50,
         height: 50,
         margin: 5
+    },
+    innerModalContainer: {
+        flex: 1,
     },
 });

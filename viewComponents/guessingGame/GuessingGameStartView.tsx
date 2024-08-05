@@ -1,7 +1,8 @@
 import React from "react";
 import {StyleSheet, TextInput, View} from "react-native";
 import PrimaryButtonView from "./PrimaryButtonView";
-import {GuessingConfirmString, GuessingCancelString} from "../StringRecources";
+import {GuessingConfirmString, GuessingCancelString, InvalidMessage, InvalidNumberMessage} from "./GuessingGameStringResource";
+import MainSnackBar from "../mainViewComponents/MainSnackBar";
 
 export default function GuessingGameStartView() {
 

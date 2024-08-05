@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {TodoItem} from "./TodoItemView";
 import {Image, Modal, Pressable, StyleSheet, Text, View} from "react-native";
-import {TodoListString} from "../StringRecources";
+import {TodoListString} from "./TodoListStringResources";
 import TodoInputView from "./TodoInputView";
 import TodoListView from "./TodoListView";
 import MainBackButton from "../mainViewComponents/MainBackButton";

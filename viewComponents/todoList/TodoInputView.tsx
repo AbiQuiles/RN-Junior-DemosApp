@@ -1,7 +1,7 @@
 import {Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React from "react";
 import {GetDeviceViewStyling} from "../DeviceStyleManager";
-import {AddItemString, AddTodoItemString} from "../StringRecources";
+import {AddItemString, AddTodoItemString} from "./TodoListStringResources";
 
 interface TodoInputViewProps {
     onChangeListener?: (newItem: string) => void
@@ -41,7 +41,6 @@ export default function TodoInputView({onChangeListener, setNewItem}: TodoInputV
                     </Image>
                     <Text style={styles.addTextStyling}>{AddItemString}</Text>
                 </Pressable>
-
             </View>
         </View>
     )

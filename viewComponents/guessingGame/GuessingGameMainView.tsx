@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Image, Modal, Pressable, StyleSheet, Text, View} from "react-native";
-import {GuessingGameString} from "../StringRecources";
+import {GuessingGameString} from "./GuessingGameStringResource";
 import GuessingGameView from "./GuessingGameView";
 import GuessingGameStartView from "./GuessingGameStartView";
 import MainBackButton from "../mainViewComponents/MainBackButton";

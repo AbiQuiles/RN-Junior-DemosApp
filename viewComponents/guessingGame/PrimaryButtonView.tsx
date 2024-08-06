@@ -13,7 +13,7 @@ export default function PrimaryButtonView(props: PrimaryButtonProps) {
         return [fileStyle, props.styleContainer]
     }*/
 
-    const pressStylesHandler = (fileStyle: StyleProp<any>, isPress: boolean) => {
+    const pressStylesHandler = (fileStyle: StyleProp<ViewStyle>, isPress: boolean) => {
         return isPress ?  [fileStyle, props.styleContainer] : props.styleContainer
     }
     return (

@@ -42,6 +42,7 @@ export default function GuessingGameMainView() {
 
 const styles= StyleSheet.create({
     container: {
+        flex: 1,
         //alignItems: 'center',
         //paddingTop: '15%',
         //paddingHorizontal: 15,
@@ -65,8 +66,5 @@ const styles= StyleSheet.create({
         width: 50,
         height: 50,
         margin: 5
-    },
-    innerModalContainer: {
-        flex: 1,
     },
 });

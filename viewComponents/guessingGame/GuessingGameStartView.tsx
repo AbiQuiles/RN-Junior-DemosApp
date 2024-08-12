@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import {StyleSheet, TextInput, View} from "react-native";
 import PrimaryButtonView from "./PrimaryButtonView";
-import {GuessingConfirmString, GuessingCancelString, InvalidMessage, InvalidNumberMessage} from "./GuessingGameStringResource";
-import MainSnackBar from "../mainViewComponents/MainSnackBar";
+import {
+    GuessingCancelString,
+    GuessingConfirmString,
+    InvalidNumericTypeMessage,
+    InvalidNumberMessage
+} from "./GuessingGameStringResource";
+import MainSnackBarHandler from "../mainViewComponents/SnackBar/MainSnackBarHandler";
+import {SnackBarTypes} from "../mainViewComponents/SnackBar/SnackBarTypes";
 
 export default function GuessingGameStartView() {
-    const [inputNumber,setInputNumber] = React.useState('');
-    const [snackBarVisibility, setSnackBarVisibility] = React.useState(false);
-    const [snackBarMessage, setSnackBarMessage] = React.useState('');
+    const [inputNumber,setInputNumber] = useState<string>('');
+    const [snackBarType, setSnackBarType] = useState<SnackBarTypes>(SnackBarTypes.Info);
+    const [snackBarVisibility, setSnackBarVisibility] = useState<boolean>(false);
+    const [snackBarMessage, setSnackBarMessage] = useState<string>('');
 
     const inputNumberHandler = (newText: string) => {
         const parseToNumeric = parseInt(newText);
@@ -15,34 +22,22 @@ export default function GuessingGameStartView() {
         const numberLimitCheck = parseToNumeric <= 0 || parseToNumeric > 99
 
         if (numberCheck) {
-            console.log("Error: Invalid number:", newText);
+            setSnackBarType(SnackBarTypes.Error)
             setSnackBarVisibility(true)
-            setSnackBarMessage(InvalidMessage)
-            //GetSnackBar(true, InvalidMessage);
+            setSnackBarMessage(InvalidNumericTypeMessage)
         } else if (numberLimitCheck) {
+            setSnackBarType(SnackBarTypes.Info)
             setSnackBarVisibility(true)
             setSnackBarMessage(InvalidNumberMessage)
-            //GetSnackBar(true, InvalidNumberMessage)
         } else {
-            setSnackBarVisibility(false,)
-            setSnackBarMessage('caca')
-            //GetSnackBar(false, undefined)
+            setSnackBarVisibility(false)
         }
         setInputNumber(newText);
     }
 
     const pressConfirmEvent = () => {
         console.log("ConfirmPress Event!!!!");
-        if (inputNumber === undefined || inputNumber === null || inputNumber === "") {
-            console.log("Enter a number");
-        }
     }
-
-    /*const GetSnackBar = (visibility: boolean, message?: string) => {
-        return <MainSnackBar
-            visible={visibility}
-            message={message}/>
-    }*/
 
     const pressCancelEvent = () => {
         console.log("CancelPress Event!!!!");
@@ -68,25 +63,18 @@ export default function GuessingGameStartView() {
                     text={GuessingCancelString}
                     pressEvent={pressCancelEvent}/>
             </View>
-            <MainSnackBar
+            <MainSnackBarHandler
+                type={snackBarType}
                 visible={snackBarVisibility}
                 message={snackBarMessage}/>
         </View>
-
     )
 }
-
-/*
-<MainSnackBar
-                visible={showSnackBar}
-                message={InvalidMessage}/>
-*/
-
-//{GetSnackBar(snackBarVisibility, snackBarMessage)}
 
 const style = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: "column",
         alignItems: 'center',
     },
     inputText: {

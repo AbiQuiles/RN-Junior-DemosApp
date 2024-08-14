@@ -5,6 +5,7 @@ import {TodoListString} from "./TodoListStringResources";
 import TodoInputView from "./TodoInputView";
 import TodoListView from "./TodoListView";
 import MainBackButton from "../mainViewComponents/MainBackButton";
+import {MainBlueColor, MainWhiteColor} from "../Resources/ColorResources";
 
 export default function TodoListMainView() {
     const [modalVisibility, setModalVisibility] = useState(false)
@@ -63,8 +64,7 @@ export default function TodoListMainView() {
             <Pressable
                 onPress={showTodoListView}
                 style={styles.mainButton}>
-                <Image
-                    style={styles.imageStyling}
+                <Image style={styles.imageStyling}
                     source={require('../../assets/images/todoList.png')}>
                 </Image>
                 <Text style={styles.mainText}>
@@ -95,7 +95,7 @@ const styles= StyleSheet.create({
         fontSize: 18,
         lineHeight: 21,
         letterSpacing: 0.25,
-        color: 'white',
+        color: MainWhiteColor,
         fontWeight: 'bold',
     },
     mainButton: {
@@ -104,7 +104,7 @@ const styles= StyleSheet.create({
         elevation: 2,
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: '#2196F3'
+        backgroundColor: MainBlueColor
     },
     imageStyling : {
         width: 50,

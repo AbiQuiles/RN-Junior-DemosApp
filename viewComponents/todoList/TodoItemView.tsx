@@ -1,5 +1,7 @@
 import React from "react";
 import {Image, Pressable, StyleSheet, Text, View} from "react-native";
+import {MainGreyColor} from "../Resources/ColorResources";
+import {TrashIcon} from "../Resources/IconResources";
 
 type TodoItem = {
     task: string,
@@ -17,9 +19,8 @@ export default function TodoItemView(itemsData: TodoItem) {
             </View>
             <View>
                 <Pressable onPress={itemsData.pressEvent}>
-                    <Image
-                        style={styles.addImageStyling}
-                        source={require('../../assets/images/trash.png')}>
+                    <Image style={styles.addImageStyling}
+                        source={TrashIcon}>
                     </Image>
                 </Pressable>
             </View>
@@ -31,15 +32,14 @@ const styles = StyleSheet.create({
     container: {
         alignItems: "center",
         flexDirection: "row",
-        paddingHorizontal: 45
+        paddingHorizontal: '7%'
     },
     listItemView: {
         flex: 1,
         padding: 7,
         marginTop: 7,
-        color: "white",
         borderBottomWidth: 1,
-        borderBottomColor: '#cccccc',
+        borderBottomColor: MainGreyColor,
     },
     listItemText: {
         fontSize: 16,

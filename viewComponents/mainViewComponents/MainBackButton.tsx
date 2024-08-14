@@ -1,7 +1,8 @@
 import {GetDeviceViewStyling} from "../DeviceStyleManager";
 import {Image, Pressable, StyleSheet, Text, View} from "react-native";
-import {BackString} from "../StringRecources";
+import {BackString} from "../Resources/StringRecources";
 import React from "react";
+import {BackIcon} from "../Resources/IconResources";
 
 interface MainBackButtonProps {
     pressEvent: () => void
@@ -18,7 +19,7 @@ export default function MainBackButton(props: MainBackButtonProps) {
                 <View style={modalStyles.backContainer}>
                     <Image
                         style={modalStyles.backImage}
-                        source={require('../../assets/images/back.png')}>
+                        source={BackIcon}>
                     </Image>
                     <Text style={modalStyles.backButtonText}>
                         {BackString}

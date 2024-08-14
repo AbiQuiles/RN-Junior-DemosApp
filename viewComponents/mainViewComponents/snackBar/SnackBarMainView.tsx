@@ -5,7 +5,7 @@ import {CloseIcon} from "../../Resources/IconResources";
 
 export default function SnackBarMainView(props: SnackBarTypesProps) {
 
-    //TODO: Couldn't figure out how to make the SnackBar view take the close pressEvent.
+    //TODO: Couldn't figure out how to make the snackBar view take the close pressEvent.
     // Will try this again along the road when I get more knowledge of view state handling.
     // I do something called 'Hooks' in RN will be the solution but couldn't figure it out yet.
 

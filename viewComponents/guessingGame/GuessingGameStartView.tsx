@@ -42,6 +42,7 @@ export default function GuessingGameStartView() {
     const pressCancelEvent = () => {
         console.log("CancelPress Event!!!!");
         setInputNumber("")
+        setSnackBarVisibility(false)
     }
 
     return(

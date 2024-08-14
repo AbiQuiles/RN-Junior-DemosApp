@@ -5,7 +5,11 @@ import {CloseIcon} from "../../Resources/IconResources";
 
 export default function SnackBarMainView(props: SnackBarTypesProps) {
 
-    return (
+    //TODO: Couldn't figure out how to make the SnackBar view take the close pressEvent.
+    // Will try this again along the road when I get more knowledge of view state handling.
+    // I do something called 'Hooks' in RN will be the solution but couldn't figure it out yet.
+
+    return props.visible? (
         <View style={styles.container}>
             <View style={styles.firstContainer}>
                 {props.icon}
@@ -15,13 +19,13 @@ export default function SnackBarMainView(props: SnackBarTypesProps) {
                 <Pressable>
                     <View style={styles.closeImageContainer}>
                         <Image style={styles.closeImageStyling}
-                            source={CloseIcon}>
+                               source={CloseIcon}>
                         </Image>
                     </View>
                 </Pressable>
             </View>
         </View>
-    )
+    ): null
 }
 
 const styles = StyleSheet.create({

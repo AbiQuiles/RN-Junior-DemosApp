@@ -10,38 +10,33 @@ import {ColorValue} from "react-native/Libraries/StyleSheet/StyleSheet";
 interface MainSnackBarProps {
     type?: SnackBarTypes | undefined
     visible: boolean,
-    message: string,
-    buttonText?: string,
+    message?: string,
     onPressEvent?: () => void
 }
 
 export type SnackBarTypesProps = {
+    visible: boolean,
     icon?: ReactElement | undefined
     message?: string,
-    buttonText?: string,
 }
 
 export default function MainSnackBarHandler(props: MainSnackBarProps) {
-
     const iconView = (icon: ImageSourcePropType, color: ColorValue) => {
         return <SnackBarIconView
             icon={icon}
             backgroundColor={color}/>
     }
 
-
-    if (props.type === SnackBarTypes.Info && props.visible) {
-
+    if (props.type === SnackBarTypes.Info) {
         return <SnackBarMainView
+            visible={props.visible}
             icon={iconView(InfoIcon, InfoOrangeColor)}
-            message={props.message}
-            buttonText={props.buttonText}/>
-    } else if (props.type === SnackBarTypes.Error && props.visible) {
-
+            message={props.message}/>
+    } else if (props.type === SnackBarTypes.Error) {
         return <SnackBarMainView
+            visible={props.visible}
             icon={iconView(ErrorIcon, ErrorRedColor)}
-            message={props.message}
-            buttonText={props.buttonText}/>
+            message={props.message}/>
     } else {
         return null
     }

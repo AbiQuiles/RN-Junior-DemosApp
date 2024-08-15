@@ -10,36 +10,30 @@ interface MainBackButtonProps {
 
 export default function MainBackButton(props: MainBackButtonProps) {
     return (
+        <View style={styles.container}>
             <Pressable
                 onPress={props.pressEvent}
                 style={GetDeviceViewStyling(
                     modalStylesIOS.backButton,
                     modalStylesAndroid.backButton
                 )}>
-                <View style={modalStyles.backContainer}>
+                <View style={styles.backContainer}>
                     <Image
-                        style={modalStyles.backImage}
+                        style={styles.backImage}
                         source={BackIcon}>
                     </Image>
-                    <Text style={modalStyles.backButtonText}>
+                    <Text style={styles.backButtonText}>
                         {BackString}
                     </Text>
                 </View>
             </Pressable>
+        </View>
     )
 }
 
-const modalStyles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
-        flex: 2,
-        paddingHorizontal: '15%',
-        marginVertical: "15%",
-        alignItems: 'center',
-    },
-    backButton: {
-        marginHorizontal: "4%",
-        marginTop: '15%',
-        marginBottom: 20,
+        alignItems: 'flex-start',
     },
     backContainer: {
         flexDirection: "row"
@@ -60,7 +54,7 @@ const modalStyles = StyleSheet.create({
 
 const modalStylesIOS = StyleSheet.create({
     backButton: {
-        marginHorizontal: "4%",
+        marginHorizontal: 10,
         marginTop: '15%',
         marginBottom: 20,
     },
@@ -68,7 +62,7 @@ const modalStylesIOS = StyleSheet.create({
 
 const modalStylesAndroid = StyleSheet.create({
     backButton: {
-        marginHorizontal: "4%",
+        marginHorizontal: 10,
         marginVertical: "5%",
         marginBottom: 20,
     },

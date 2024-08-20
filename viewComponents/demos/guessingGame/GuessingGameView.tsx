@@ -1,6 +1,7 @@
 import {Image, StyleSheet, View} from "react-native";
 import React from "react";
-import {GetDeviceViewStyling} from "../DeviceStyleManager";
+import {GetDeviceViewStyling} from "../../DeviceStyleManager";
+import {GuessingGameImage} from "../../Resources/ImagesResources";
 
 export default function GuessingGameView() {
 
@@ -9,7 +10,7 @@ export default function GuessingGameView() {
             <View style={styles.imageContainer}>
                 <Image
                     style={styles.mainImageStyling}
-                    source={require('../../assets/images/gameController.png')}>
+                    source={GuessingGameImage}>
                 </Image>
             </View>
         </View>

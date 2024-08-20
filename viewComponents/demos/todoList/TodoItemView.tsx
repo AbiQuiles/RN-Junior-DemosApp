@@ -1,7 +1,7 @@
 import React from "react";
 import {Image, Pressable, StyleSheet, Text, View} from "react-native";
-import {MainGreyColor} from "../Resources/ColorResources";
-import {TrashIcon} from "../Resources/IconResources";
+import {MainGreyColor} from "../../Resources/ColorResources";
+import {TrashIcon} from "../../Resources/IconResources";
 
 type TodoItem = {
     task: string,

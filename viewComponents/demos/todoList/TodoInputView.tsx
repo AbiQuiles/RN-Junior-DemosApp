@@ -1,9 +1,10 @@
 import {Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React from "react";
-import {GetDeviceViewStyling} from "../DeviceStyleManager";
+import {GetDeviceViewStyling} from "../../DeviceStyleManager";
 import {AddItemString, AddTodoItemString} from "./TodoListStringResources";
-import {AddIcon} from "../Resources/IconResources";
-import {MainBlueColor, MainDarkBlueColor, MainGreyColor, MainWhiteColor} from "../Resources/ColorResources";
+import {AddIcon} from "../../Resources/IconResources";
+import {MainBlueColor, MainDarkBlueColor, MainGreyColor, MainWhiteColor} from "../../Resources/ColorResources";
+import {TodoDemoImage} from "../../Resources/ImagesResources";
 
 interface TodoInputViewProps {
     onChangeListener?: (newItem: string) => void
@@ -18,7 +19,7 @@ export default function TodoInputView({onChangeListener, setNewItem}: TodoInputV
         )}>
             <View style={styles.imageContainer}>
                 <Image style={styles.mainImageStyling}
-                    source={require('../../assets/images/todoList.png')}>
+                    source={TodoDemoImage}>
                 </Image>
             </View>
             <View style={GetDeviceViewStyling(

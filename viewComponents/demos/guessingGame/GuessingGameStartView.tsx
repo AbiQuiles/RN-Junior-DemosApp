@@ -7,8 +7,8 @@ import {
     InvalidNumericTypeMessage,
     InvalidNumberMessage
 } from "./GuessingGameStringResource";
-import MainSnackBarHandler from "../mainViewComponents/snackBar/MainSnackBarHandler";
-import {SnackBarTypes} from "../mainViewComponents/snackBar/SnackBarTypes";
+import MainSnackBarHandler from "../../mainViewComponents/snackBar/MainSnackBarHandler";
+import {SnackBarTypes} from "../../mainViewComponents/snackBar/SnackBarTypes";
 
 export default function GuessingGameStartView() {
     const [inputNumber,setInputNumber] = useState<string>('');

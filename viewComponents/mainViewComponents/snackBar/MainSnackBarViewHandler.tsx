@@ -20,7 +20,7 @@ export type SnackBarTypesProps = {
     message?: string,
 }
 
-export default function MainSnackBarHandler(props: MainSnackBarProps) {
+export default function MainSnackBarViewHandler(props: MainSnackBarProps) {
     const iconView = (icon: ImageSourcePropType, color: ColorValue) => {
         return <SnackBarIconView
             icon={icon}

@@ -1,6 +1,6 @@
 import {Image, Pressable, StyleSheet, Text, View} from "react-native";
 import React from "react";
-import {SnackBarTypesProps} from "./MainSnackBarHandler";
+import {SnackBarTypesProps} from "./MainSnackBarViewHandler";
 import {CloseIcon} from "../../Resources/IconResources";
 
 export default function SnackBarMainView(props: SnackBarTypesProps) {

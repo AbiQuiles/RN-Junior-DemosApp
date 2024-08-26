@@ -3,7 +3,7 @@ import {Image, Pressable, StyleSheet, Text, View} from "react-native";
 import {MainGreyColor} from "../../Resources/ColorResources";
 import {TrashIcon} from "../../Resources/IconResources";
 
-type TodoItem = {
+export type TodoItem = {
     task: string,
     key: string,
     pressEvent: () => void
@@ -54,5 +54,3 @@ const styles = StyleSheet.create({
         margin: 8,
     },
 });
-
-export { TodoItem }

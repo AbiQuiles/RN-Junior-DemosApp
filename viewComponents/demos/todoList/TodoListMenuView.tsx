@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import {View} from "react-native";
 import {TodoListString} from "./TodoListStringResources";
 import DemosMenuItem from "../menuViewComponents/DemosMenuItem";
-import DemosModalHandler from "../menuViewComponents/DemosModalsHandler";
+import DemosModalViewHandler from "../menuViewComponents/DemosModalsHandler";
 import {TodoDemoImage} from "../../Resources/ImagesResources";
 import {DemosModalType} from "../menuViewComponents/DemosModalType";
 
-export default function TodoListMainView() {
+export default function TodoListMenuView() {
     const [modalVisibility, setModalVisibility] = useState<boolean>(false)
     const modalVisibilityHandler = () => {
         if (!modalVisibility) {
@@ -23,7 +23,7 @@ export default function TodoListMainView() {
                 image={TodoDemoImage}
                 pressEvent={modalVisibilityHandler}>
             </DemosMenuItem>
-            <DemosModalHandler
+            <DemosModalViewHandler
                 type={DemosModalType.TodoItems}
                 visibility={modalVisibility}
                 backPressEvent={modalVisibilityHandler}/>

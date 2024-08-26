@@ -1,6 +1,6 @@
 import React from 'react';
-import TodoListMainView from "./viewComponents/demos/todoList/TodoListMainView";
-import GuessingGameMainView from "./viewComponents/demos/guessingGame/GuessingGameMainView";
+import TodoListMenuView from "./viewComponents/demos/todoList/TodoListMenuView";
+import GuessingGameMenuView from "./viewComponents/demos/guessingGame/GuessingGameMenuView";
 import {SafeAreaView, ScrollView, StyleSheet, View} from "react-native";
 import {GetDeviceViewStyling} from "./viewComponents/DeviceStyleManager";
 
@@ -15,10 +15,10 @@ const MainAppViews = () => {
                     undefined,
                     stylesAndroid.scrollView)}>
                 <View style={styles.item}>
-                    <TodoListMainView/>
+                    <TodoListMenuView/>
                 </View>
                 <View style={styles.item}>
-                    <GuessingGameMainView/>
+                    <GuessingGameMenuView/>
                 </View>
             </ScrollView>
         </SafeAreaView>

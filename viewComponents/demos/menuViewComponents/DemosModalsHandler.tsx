@@ -4,7 +4,6 @@ import React, {useState} from "react";
 import TodoInputView from "../todoList/TodoInputView";
 import TodoListView from "../todoList/TodoListView";
 import {TodoItem} from "../todoList/TodoItemView";
-import GuessingGameView from "../guessingGame/GuessingGameView";
 import GuessingGameStartView from "../guessingGame/GuessingGameStartView";
 import {DemosModalType} from "./DemosModalType";
 
@@ -19,7 +18,7 @@ type DemosModalProps = {
     backPressEvent: () => void
 }
 
-export default function DemosModalHandler(props: DemosModalHandlerProps) {
+export default function DemosModalViewHandler(props: DemosModalHandlerProps) {
     switch(props.type){
         case DemosModalType.TodoItems:
             return <TodoListModal {...props}/>
@@ -29,7 +28,7 @@ export default function DemosModalHandler(props: DemosModalHandlerProps) {
 
 }
 
-function TodoListModal(props: DemosModalProps) {
+function TodoListModal({visibility, backPressEvent}: DemosModalProps) {
     const [text, setChangeText] = useState<string>('')
     const [todoItems, setTodoItems] = useState<TodoItem[]>([])
     const onChangeListener = (newItem: string) => setChangeText(newItem)
@@ -74,8 +73,8 @@ function TodoListModal(props: DemosModalProps) {
         <View>
             <Modal
                 animationType={'slide'}
-                visible={props.visibility}>
-                <MainBackButton pressEvent={props.backPressEvent}/>
+                visible={visibility}>
+                <MainBackButton pressEvent={backPressEvent}/>
                 <TodoInputView
                     onChangeListener={onChangeListener}
                     setNewItem={newItemHandler}/>
@@ -85,17 +84,15 @@ function TodoListModal(props: DemosModalProps) {
     )
 }
 
-function GuessingGameModal(props: DemosModalProps) {
+function GuessingGameModal({visibility, backPressEvent}: DemosModalProps) {
     return(
         <View>
             <Modal
                 animationType={'slide'}
-                visible={props.visibility}>
-                <MainBackButton pressEvent={props.backPressEvent}/>
-                <GuessingGameView/>
+                visible={visibility}>
+                <MainBackButton pressEvent={backPressEvent}/>
                 <GuessingGameStartView/>
             </Modal>
         </View>
     )
 }
-

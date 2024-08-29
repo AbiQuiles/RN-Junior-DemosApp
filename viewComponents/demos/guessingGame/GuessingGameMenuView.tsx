@@ -3,10 +3,10 @@ import {View} from "react-native";
 import {GuessingGameString} from "./GuessingGameStringResource";
 import DemosMenuItem from "../menuViewComponents/DemosMenuItem";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
-import DemosModalHandler from "../menuViewComponents/DemosModalsHandler";
+import DemosModalViewHandler from "../menuViewComponents/DemosModalsHandler";
 import {DemosModalType} from "../menuViewComponents/DemosModalType";
 
-export default function GuessingGameMainView() {
+export default function GuessingGameMenuView() {
     const [modalVisibility, setModalVisibility] = useState<boolean>(false)
     const modalVisibilityHandler = () => {
         if (!modalVisibility) {
@@ -23,7 +23,7 @@ export default function GuessingGameMainView() {
                 image={GuessingGameImage}
                 pressEvent={modalVisibilityHandler}>
             </DemosMenuItem>
-            <DemosModalHandler
+            <DemosModalViewHandler
                 type={DemosModalType.GuessingGame}
                 visibility={modalVisibility}
                 backPressEvent={modalVisibilityHandler}/>

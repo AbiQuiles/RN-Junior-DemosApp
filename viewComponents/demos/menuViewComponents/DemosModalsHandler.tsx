@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import TodoInputView from "../todoList/TodoInputView";
 import TodoListView from "../todoList/TodoListView";
 import {TodoItem} from "../todoList/TodoItemView";
-import GuessingGameStartView from "../guessingGame/GuessingGameStartView";
+import GuessingGameView from "../guessingGame/GuessingGameView";
 import {DemosModalType} from "./DemosModalType";
 
 interface DemosModalHandlerProps {
@@ -91,7 +91,7 @@ function GuessingGameModal({visibility, backPressEvent}: DemosModalProps) {
                 animationType={'slide'}
                 visible={visibility}>
                 <MainBackButton pressEvent={backPressEvent}/>
-                <GuessingGameStartView/>
+                <GuessingGameView/>
             </Modal>
         </View>
     )

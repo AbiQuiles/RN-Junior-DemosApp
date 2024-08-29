@@ -3,28 +3,29 @@ import React, {ReactElement, useEffect} from "react";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
 import {GuessingGameViewType} from "./GuessingGameViewType";
 import {MainGreyColor} from "../../Resources/ColorResources";
+import PrimaryButtonView from "./PrimaryButtonView";
 
 interface GuessingGameViewHandlerProps {
-    gameViewType: GuessingGameViewType | undefined
-    numberOfGuess: string | undefined
+    gameViewType: GuessingGameViewType | undefined;
+    numberToGuess: string | undefined
 }
 
 type GuessingViewProps = {
-    numberOfGuess: string
+    numberToGuess: string
 }
 
-export default function GuessingGameViewHandler({gameViewType, numberOfGuess}: GuessingGameViewHandlerProps) {
+export default function GuessingGameViewHandler({gameViewType, numberToGuess}: GuessingGameViewHandlerProps) {
     const [gameStateView, setGameStateView] = React.useState<ReactElement>();
 
     useEffect(() => {
-        if (gameViewType === GuessingGameViewType.Guessing && numberOfGuess !== undefined) {
+        if (gameViewType === GuessingGameViewType.Guessing && numberToGuess !== undefined) {
             setGameStateView(
-                <GuessingView numberOfGuess={numberOfGuess}/>
+            <GuessingView numberToGuess={numberToGuess} />
             )
         } else {
             setGameStateView(<ImageView/>)
         }
-    }, [gameViewType, numberOfGuess])
+    }, [gameViewType, numberToGuess])
 
     return gameStateView
 }
@@ -33,14 +34,11 @@ export default function GuessingGameViewHandler({gameViewType, numberOfGuess}: G
 function ImageView () {
     const [image, setImage] = React.useState<ImageSourcePropType>(GuessingGameImage)
 
-    return(
+    return (
         <View>
-            <View style={styles.titleContainer}>
-                <Text style={styles.title}>Guessing Game</Text>
-            </View>
-            <View style={styles.imageContainer}>
+            <View style={style.imageContainer}>
                 <Image
-                    style={styles.mainImageStyling}
+                    style={style.mainImageStyling}
                     source={image}>
                 </Image>
             </View>
@@ -48,29 +46,60 @@ function ImageView () {
     )
 }
 
-function GuessingView({numberOfGuess}:GuessingViewProps) {
+function GuessingView({numberToGuess}:GuessingViewProps) {
+    const maxNullCheck = 100
+    const minNullCheck = 1
+
     const randomNumberGenerator = (): string => {
-        const min = 1
-        const max = 99
-        const randomNumber = String(Math.floor(Math.random() * (min + max)) + min)
+        const randomNumber = String(
+            Math.floor(Math.random() * (maxNullCheck + minNullCheck)) + minNullCheck
+        )
 
         console.log("RandomNumber ",randomNumber)
 
-        if(randomNumber === numberOfGuess) {
+        if(randomNumber === numberToGuess) {
             return randomNumberGenerator()
         } else {
             return randomNumber
         }
     }
 
+    function pressIncrementEvent() {
+        console.log("PressIncrement Event!!")
+    }
+
+    function pressDecreaseEvent() {
+        console.log("PressDecrease Event!!")
+    }
+
     return(
-        <View>
-            <View style={styles.titleContainer}>
-                <Text style={styles.title}>App Guess</Text>
-            </View>
-            <Text>{randomNumberGenerator()}</Text>
-            <View>
-                <Text>Higher or Lower?</Text>
+        <View style={style.container}>
+            <View style={style.guessViewsContainer}>
+                <View style={style.titleContainer}>
+                    <Text style={style.title}>App Guess</Text>
+                </View>
+                <View style={style.guessNumberTextContainer}>
+                    <Text style={style.guessNumberText}>
+                        {randomNumberGenerator()}
+                    </Text>
+                </View>
+                <View style={style.questionTextContainer}>
+                    <Text style={style.questionText}>
+                        Higher or Lower?
+                    </Text>
+                    <View style={style.containerButtons}>
+                        <PrimaryButtonView
+                            styleContainer={style.incrementButton}
+                            text={'Increment (+)'}
+                            pressEvent={pressIncrementEvent}
+                        />
+                        <PrimaryButtonView
+                            styleContainer={style.decreaseButton}
+                            text={'Decrease (-)'}
+                            pressEvent={pressDecreaseEvent}
+                        />
+                    </View>
+                </View>
             </View>
             <View>
                 {/*Round Logs*/}
@@ -79,17 +108,16 @@ function GuessingView({numberOfGuess}:GuessingViewProps) {
     )
 }
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
     container: {
+        alignItems: "center"
     },
     titleContainer: {
-        paddingHorizontal: 80,
-        borderBottomWidth: 2,
-        borderBottomColor: MainGreyColor,
+        alignItems: "center"
     },
     title: {
-        padding: 0,
-        fontSize: 25,
+        paddingBottom: 10,
+        fontSize: 22,
         fontWeight: "bold",
     },
     imageContainer: {
@@ -100,5 +128,44 @@ const styles = StyleSheet.create({
         width: 160,
         height: 140,
         margin: 5
+    },
+    guessViewsContainer: {
+        padding: 6,
+        margin: 10,
+        backgroundColor: '#ededed',
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: MainGreyColor,
+    },
+    guessNumberTextContainer: {
+        alignItems: "center",
+        borderBottomWidth: 1.5,
+        borderBottomColor: MainGreyColor,
+    },
+    guessNumberText: {
+        fontSize: 28,
+    },
+    questionTextContainer: {
+        alignItems: "center"
+    },
+    questionText: {
+        fontWeight: "bold",
+        fontSize: 20,
+    },
+    containerButtons: {
+        flexDirection: "row",
+        margin: 6,
+    },
+    incrementButton: {
+        padding: 2,
+        margin: 14,
+        backgroundColor: "#65c50c",
+        borderRadius: 10,
+    },
+    decreaseButton: {
+        padding: 2,
+        margin: 14,
+        backgroundColor: "#f8ab44",
+        borderRadius: 10,
     },
 })

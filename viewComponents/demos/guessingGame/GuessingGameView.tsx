@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {StyleSheet, TextInput, View} from "react-native";
+import {StyleSheet, Text, TextInput, View} from "react-native";
 import PrimaryButtonView from "./PrimaryButtonView";
 import {
     GuessingCancelString,
@@ -11,6 +11,7 @@ import MainSnackBarViewHandler from "../../mainViewComponents/snackBar/MainSnack
 import {SnackBarTypes} from "../../mainViewComponents/snackBar/SnackBarTypes";
 import GuessingGameImageViewHandler from "./GuessingGameViewHandler";
 import {GuessingGameViewType} from "./GuessingGameViewType";
+import {MainGreyColor} from "../../Resources/ColorResources";
 
 export default function GuessingGameView() {
     const [gameViewType, setGameViewType] = React.useState<GuessingGameViewType>()
@@ -46,7 +47,6 @@ export default function GuessingGameView() {
     }
 
     const pressCancelEvent = () => {
-        console.log("CancelPress Event!!!!")
         setInputNumber("")
         setSnackBarVisibility(false)
         setGameViewType(undefined)
@@ -54,10 +54,13 @@ export default function GuessingGameView() {
 
     return(
         <View style={style.container}>
+            <View style={style.titleContainer}>
+                <Text style={style.title}>Guessing Game</Text>
+            </View>
             <View style={style.imageViewContainer}>
                 <GuessingGameImageViewHandler
                     gameViewType={gameViewType}
-                    numberOfGuess={numberToGuess}
+                    numberToGuess={numberToGuess}
                 />
             </View>
             <View style={style.userInterfaceContainer}>
@@ -92,16 +95,25 @@ const style = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         alignItems: 'center',
-        //backgroundColor: 'orange'
+        //backgroundColor: 'orange',
+    },
+    titleContainer: {
+        paddingHorizontal: 80,
+        borderBottomWidth: 2,
+        borderBottomColor: MainGreyColor,
+    },
+    title: {
+        padding: 0,
+        fontSize: 25,
+        fontWeight: "bold",
     },
     imageViewContainer: {
         marginBottom: 10,
         //backgroundColor: "green",
     },
     userInterfaceContainer: {
-        //marginVertical: 10,
+        flex: 1,
         alignItems: 'center',
-        //backgroundColor: "red",
     },
     inputText: {
         maxWidth:  250,
@@ -112,22 +124,22 @@ const style = StyleSheet.create({
         fontSize: 28,
         borderRadius: 7,
         borderWidth: 1.3,
-        backgroundColor: '#d8d7d7'
+        backgroundColor: '#d8d7d7',
+        borderColor: '#918F8FE5',
     },
     containerButtons: {
         flexDirection: "row",
     },
     confirmButton: {
-        margin: 10,
+        paddingHorizontal: 8,
+        margin: 12,
         backgroundColor: "#1a8eaa",
         borderRadius: 10,
-        borderWidth: 1.3,
     },
     cancelButton: {
-        alignSelf: "center",
-        margin: 10,
+        paddingHorizontal: 8,
+        margin: 12,
         backgroundColor: "#d33a3a",
         borderRadius: 10,
-        borderWidth: 1.3,
     },
 })

@@ -13,7 +13,7 @@ interface DemosModalHandlerProps {
     backPressEvent: () => void
 }
 
-type DemosModalProps = {
+interface DemosModalProps {
     visibility: boolean
     backPressEvent: () => void
 }

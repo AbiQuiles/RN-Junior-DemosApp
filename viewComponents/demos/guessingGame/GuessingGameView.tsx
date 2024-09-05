@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {StyleSheet, Text, TextInput, View} from "react-native";
-import PrimaryButtonView from "./PrimaryButtonView";
+import PrimaryButtonView from "../../mainViewComponents/PrimaryButtonView";
 import {
     GuessingCancelString,
     GuessingConfirmString,
@@ -15,11 +15,11 @@ import {MainGreyColor} from "../../Resources/ColorResources";
 
 export default function GuessingGameView() {
     const [gameViewType, setGameViewType] = React.useState<GuessingGameViewType>()
-    const [inputNumber,setInputNumber] = useState<string>('');
+    const [inputNumber,setInputNumber] = useState<string>();
     const [numberToGuess, setNumberToGuess] = useState<string>()
     const [snackBarType, setSnackBarType] = useState<SnackBarTypes>(SnackBarTypes.Info);
     const [snackBarVisibility, setSnackBarVisibility] = useState<boolean>(false);
-    const [snackBarMessage, setSnackBarMessage] = useState<string>('');
+    const [snackBarMessage, setSnackBarMessage] = useState<string>();
 
     const inputNumberCheck = (newText: string) => {
         const parseToNumeric = parseInt(newText)
@@ -43,7 +43,9 @@ export default function GuessingGameView() {
     }
 
     const pressConfirmEvent = () => {
-        inputNumberCheck(inputNumber);
+        if (inputNumber) {
+            inputNumberCheck(inputNumber);
+        }
     }
 
     const pressCancelEvent = () => {

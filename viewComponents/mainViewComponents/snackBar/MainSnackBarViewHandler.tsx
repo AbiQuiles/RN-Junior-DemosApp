@@ -1,4 +1,4 @@
-import React, {ReactElement} from "react";
+import React from "react";
 import {SnackBarTypes} from "./SnackBarTypes";
 import SnackBarMainView from "./SnackBarMainView";
 import {ErrorIcon, InfoIcon} from "../../Resources/IconResources";
@@ -12,12 +12,6 @@ interface MainSnackBarProps {
     visible: boolean,
     message?: string,
     onPressEvent?: () => void
-}
-
-export type SnackBarTypesProps = {
-    visible: boolean,
-    icon?: ReactElement | undefined
-    message?: string,
 }
 
 export default function MainSnackBarViewHandler(props: MainSnackBarProps) {

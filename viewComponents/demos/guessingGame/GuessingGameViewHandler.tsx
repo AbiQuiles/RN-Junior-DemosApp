@@ -2,28 +2,30 @@ import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 import React, {ReactElement, useEffect} from "react";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
 import {GuessingGameViewType} from "./GuessingGameViewType";
-import {MainGreyColor} from "../../Resources/ColorResources";
-import PrimaryButtonView from "./PrimaryButtonView";
+import GuessingGameGuessView from "./GuessingGameViews/GuessingGameGuessView";
 
 interface GuessingGameViewHandlerProps {
     gameViewType: GuessingGameViewType | undefined;
     numberToGuess: string | undefined
 }
 
-type GuessingViewProps = {
-    numberToGuess: string
-}
-
 export default function GuessingGameViewHandler({gameViewType, numberToGuess}: GuessingGameViewHandlerProps) {
     const [gameStateView, setGameStateView] = React.useState<ReactElement>();
+
+    //TODO: Figure out how to use React Navigation so that we can navigate through views
+    // and add back functionality between all the guessing gave views.
+    // Resources:
+    // https://reactnative.dev/docs/navigation
+    // https://reactnavigation.org/docs/hello-react-navigation
+    // https://github.com/react-native-community/hooks#usebackhandler
 
     useEffect(() => {
         if (gameViewType === GuessingGameViewType.Guessing && numberToGuess !== undefined) {
             setGameStateView(
-            <GuessingView numberToGuess={numberToGuess} />
+                <GuessingGameGuessView numberToGuess={numberToGuess}/>
             )
         } else {
-            setGameStateView(<ImageView/>)
+            setGameStateView(<StartView/>)
         }
     }, [gameViewType, numberToGuess])
 
@@ -31,7 +33,7 @@ export default function GuessingGameViewHandler({gameViewType, numberToGuess}: G
 }
 
 
-function ImageView () {
+function StartView () {
     const [image, setImage] = React.useState<ImageSourcePropType>(GuessingGameImage)
 
     return (
@@ -41,68 +43,6 @@ function ImageView () {
                     style={style.mainImageStyling}
                     source={image}>
                 </Image>
-            </View>
-        </View>
-    )
-}
-
-function GuessingView({numberToGuess}:GuessingViewProps) {
-    const maxNullCheck = 100
-    const minNullCheck = 1
-
-    const randomNumberGenerator = (): string => {
-        const randomNumber = String(
-            Math.floor(Math.random() * (maxNullCheck + minNullCheck)) + minNullCheck
-        )
-
-        console.log("RandomNumber ",randomNumber)
-
-        if(randomNumber === numberToGuess) {
-            return randomNumberGenerator()
-        } else {
-            return randomNumber
-        }
-    }
-
-    function pressIncrementEvent() {
-        console.log("PressIncrement Event!!")
-    }
-
-    function pressDecreaseEvent() {
-        console.log("PressDecrease Event!!")
-    }
-
-    return(
-        <View style={style.container}>
-            <View style={style.guessViewsContainer}>
-                <View style={style.titleContainer}>
-                    <Text style={style.title}>App Guess</Text>
-                </View>
-                <View style={style.guessNumberTextContainer}>
-                    <Text style={style.guessNumberText}>
-                        {randomNumberGenerator()}
-                    </Text>
-                </View>
-                <View style={style.questionTextContainer}>
-                    <Text style={style.questionText}>
-                        Higher or Lower?
-                    </Text>
-                    <View style={style.containerButtons}>
-                        <PrimaryButtonView
-                            styleContainer={style.incrementButton}
-                            text={'Increment (+)'}
-                            pressEvent={pressIncrementEvent}
-                        />
-                        <PrimaryButtonView
-                            styleContainer={style.decreaseButton}
-                            text={'Decrease (-)'}
-                            pressEvent={pressDecreaseEvent}
-                        />
-                    </View>
-                </View>
-            </View>
-            <View>
-                {/*Round Logs*/}
             </View>
         </View>
     )
@@ -129,43 +69,35 @@ const style = StyleSheet.create({
         height: 140,
         margin: 5
     },
-    guessViewsContainer: {
-        padding: 6,
+    userInterfaceContainer: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    inputText: {
+        maxWidth:  250,
+        minWidth: 210,
+        padding: 10,
         margin: 10,
-        backgroundColor: '#ededed',
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: MainGreyColor,
-    },
-    guessNumberTextContainer: {
-        alignItems: "center",
-        borderBottomWidth: 1.5,
-        borderBottomColor: MainGreyColor,
-    },
-    guessNumberText: {
+        textAlign: 'center',
         fontSize: 28,
+        borderRadius: 7,
+        borderWidth: 1.3,
+        backgroundColor: '#d8d7d7',
+        borderColor: '#918F8FE5',
     },
-    questionTextContainer: {
-        alignItems: "center"
-    },
-    questionText: {
-        fontWeight: "bold",
-        fontSize: 20,
-    },
-    containerButtons: {
+   /* containerButtons: {
         flexDirection: "row",
-        margin: 6,
-    },
-    incrementButton: {
-        padding: 2,
-        margin: 14,
-        backgroundColor: "#65c50c",
+    },*/
+    confirmButton: {
+        paddingHorizontal: 8,
+        margin: 12,
+        backgroundColor: "#1a8eaa",
         borderRadius: 10,
     },
-    decreaseButton: {
-        padding: 2,
-        margin: 14,
-        backgroundColor: "#f8ab44",
+    cancelButton: {
+        paddingHorizontal: 8,
+        margin: 12,
+        backgroundColor: "#d33a3a",
         borderRadius: 10,
     },
 })

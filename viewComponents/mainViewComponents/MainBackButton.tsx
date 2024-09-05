@@ -1,5 +1,4 @@
-import {GetDeviceViewStyling} from "../DeviceStyleManager";
-import {Image, Pressable, StyleSheet, Text, View} from "react-native";
+import {Image, Pressable, SafeAreaView, StyleSheet, Text, View} from "react-native";
 import {BackString} from "../Resources/StringRecources";
 import React from "react";
 import {BackIcon} from "../Resources/IconResources";
@@ -8,32 +7,32 @@ interface MainBackButtonProps {
     pressEvent: () => void
 }
 
-export default function MainBackButton(props: MainBackButtonProps) {
+export default function MainBackButton({pressEvent}: MainBackButtonProps) {
     return (
-        <View style={styles.container}>
-            <Pressable
-                onPress={props.pressEvent}
-                style={GetDeviceViewStyling(
-                    modalStylesIOS.backButton,
-                    modalStylesAndroid.backButton
-                )}>
-                <View style={styles.backContainer}>
-                    <Image
-                        style={styles.backImage}
-                        source={BackIcon}>
-                    </Image>
-                    <Text style={styles.backButtonText}>
-                        {BackString}
-                    </Text>
-                </View>
-            </Pressable>
-        </View>
+        <SafeAreaView>
+            <View style={styles.container}>
+                <Pressable
+                    onPress={pressEvent}>
+                    <View style={styles.backContainer}>
+                        <Image
+                            style={styles.backImage}
+                            source={BackIcon}>
+                        </Image>
+                        <Text style={styles.backButtonText}>
+                            {BackString}
+                        </Text>
+                    </View>
+                </Pressable>
+            </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         alignItems: 'flex-start',
+        marginHorizontal: 10,
+        marginBottom: 20,
     },
     backContainer: {
         flexDirection: "row"
@@ -50,20 +49,4 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
     }
-})
-
-const modalStylesIOS = StyleSheet.create({
-    backButton: {
-        marginHorizontal: 10,
-        marginTop: '15%',
-        marginBottom: 20,
-    },
-});
-
-const modalStylesAndroid = StyleSheet.create({
-    backButton: {
-        marginHorizontal: 10,
-        marginVertical: "5%",
-        marginBottom: 20,
-    },
 })

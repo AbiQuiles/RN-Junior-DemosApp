@@ -2,7 +2,7 @@ import {Image, ImageSourcePropType, StyleSheet, View} from "react-native";
 import React, {ReactElement, useEffect} from "react";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
 import {GuessingGameViewType} from "./GuessingGameViewType";
-import GuessingGameStartView from "./GuessingGameViews/GuessingGameStartView";
+import GuessingGameGuessView from "./GuessingGameViews/GuessingGameGuessView";
 
 interface GuessingGameViewHandlerProps {
     gameViewType: GuessingGameViewType | undefined;
@@ -22,7 +22,7 @@ export default function GuessingGameViewHandler({gameViewType, numberToGuess}: G
     useEffect(() => {
         if (gameViewType === GuessingGameViewType.Guessing && numberToGuess !== undefined) {
             setGameStateView(
-                <GuessingGameStartView numberToGuess={numberToGuess}/>
+                <GuessingGameGuessView numberToGuess={numberToGuess}/>
             )
         } else {
             setGameStateView(<StartView/>)

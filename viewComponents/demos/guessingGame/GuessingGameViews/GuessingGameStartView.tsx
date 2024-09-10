@@ -1,136 +1,147 @@
-import {StyleSheet, Text, View} from "react-native";
+import React, {useState} from "react";
+import {StyleSheet, Text, TextInput, View} from "react-native";
 import PrimaryButtonView from "../../../mainViewComponents/PrimaryButtonView";
-import React from "react";
+import {
+    GuessingCancelString,
+    GuessingConfirmString,
+    InvalidNumberMessage,
+    InvalidNumericTypeMessage
+} from "../GuessingGameStringResource";
+import MainSnackBarViewHandler from "../../../mainViewComponents/snackBar/MainSnackBarViewHandler";
+import {SnackBarTypes} from "../../../mainViewComponents/snackBar/SnackBarTypes";
+import GuessingGameImageViewHandler from "../GuessingGameViewHandler";
+import {GuessingGameViewType} from "../GuessingGameViewType";
 import {MainGreyColor} from "../../../Resources/ColorResources";
 
-interface GuessingGameStartViewProps {
-    numberToGuess: string
-}
+export default function GuessingGameStartView() {
+    const [gameViewType, setGameViewType] = React.useState<GuessingGameViewType>()
+    const [inputNumber,setInputNumber] = useState<string>();
+    const [numberToGuess, setNumberToGuess] = useState<string>()
+    const [snackBarType, setSnackBarType] = useState<SnackBarTypes>(SnackBarTypes.Info);
+    const [snackBarVisibility, setSnackBarVisibility] = useState<boolean>(false);
+    const [snackBarMessage, setSnackBarMessage] = useState<string>();
 
-export default function GuessingGameStartView({numberToGuess}:GuessingGameStartViewProps) {
+    const inputNumberCheck = (newText: string) => {
+        const parseToNumeric = parseInt(newText)
+        const numberCheck = newText === '' || isNaN(parseToNumeric)
+        const numberLimitCheck = parseToNumeric <= 0 || parseToNumeric > 99
 
-    const randomNumberGenerator = (max: number = 99, min: number = 1): string => {
-        const parseNumber = parseInt(numberToGuess)
-        /*const xam = max ? max : 99 | parseNumber - 1
-        const nim = min ? min : 1 | parseNumber + 1*/
-        console.log("NumberToGuess ",numberToGuess)
-        /*console.log("Xam ",xam)
-        console.log("Nim ",nim)*/
-
-        console.log("Max ",max)
-        console.log("Min ",min)
-
-        const randomNumber = String(
-            Math.floor(Math.random() * (max - min)) + min
-        )
-
-        if(randomNumber === numberToGuess) {
-            return randomNumberGenerator()
+        if (numberCheck) {
+            setSnackBarType(SnackBarTypes.Error)
+            setSnackBarVisibility(true)
+            setSnackBarMessage(InvalidNumericTypeMessage)
+        } else if (numberLimitCheck) {
+            setSnackBarType(SnackBarTypes.Info)
+            setSnackBarVisibility(true)
+            setSnackBarMessage(InvalidNumberMessage)
         } else {
-            return randomNumber
+            setSnackBarVisibility(false)
+            setGameViewType(GuessingGameViewType.Guessing)
+            setNumberToGuess(newText)
+        }
+        setInputNumber(newText);
+    }
+
+    const pressConfirmEvent = () => {
+        if (inputNumber) {
+            inputNumberCheck(inputNumber);
         }
     }
 
-    function pressIncrementEvent() {
-        randomNumberGenerator(
-            undefined,
-            parseInt(numberToGuess) + 1,
-        )
+    const pressCancelEvent = () => {
+        setInputNumber("")
+        setSnackBarVisibility(false)
+        setGameViewType(undefined)
     }
 
-    function pressDecreaseEvent() {
-        randomNumberGenerator(
-            parseInt(numberToGuess) - 1,
-            undefined
-        )
-        console.log("PressDecrease Event!!")
-    }
-
-    return (
+    return(
         <View style={style.container}>
-            <View style={style.guessViewsContainer}>
-                <View style={style.titleContainer}>
-                    <Text style={style.title}>App Guess</Text>
-                </View>
-                <View style={style.guessNumberTextContainer}>
-                    <Text style={style.guessNumberText}>
-                        {randomNumberGenerator()}
-                    </Text>
-                </View>
-                <View style={style.questionTextContainer}>
-                    <Text style={style.questionText}>
-                        Higher or Lower?
-                    </Text>
-                    <View style={style.containerButtons}>
-                        <PrimaryButtonView
-                            styleContainer={style.incrementButton}
-                            text={'Increment (+)'}
-                            pressEvent={pressIncrementEvent}
-                        />
-                        <PrimaryButtonView
-                            styleContainer={style.decreaseButton}
-                            text={'Decrease (-)'}
-                            pressEvent={pressDecreaseEvent}
-                        />
-                    </View>
+            <View style={style.titleContainer}>
+                <Text style={style.title}>Guessing Game</Text>
+            </View>
+            <View style={style.imageViewContainer}>
+                <GuessingGameImageViewHandler
+                    gameViewType={gameViewType}
+                    numberToGuess={numberToGuess}
+                />
+            </View>
+            <View style={style.userInterfaceContainer}>
+                <TextInput
+                    style={style.inputText}
+                    keyboardType={"numeric"}
+                    maxLength={2}
+                    placeholder={"Number Input"}
+                    onChangeText={setInputNumber}
+                    value={inputNumber}/>
+                <View style={style.containerButtons}>
+                    <PrimaryButtonView
+                        styleContainer={style.confirmButton}
+                        text={GuessingConfirmString}
+                        pressEvent={pressConfirmEvent}/>
+                    <PrimaryButtonView
+                        styleContainer={style.cancelButton}
+                        text={GuessingCancelString}
+                        pressEvent={pressCancelEvent}/>
                 </View>
             </View>
-            <View>
-                {/*Round Logs*/}
-            </View>
+            <MainSnackBarViewHandler
+                type={snackBarType}
+                visible={snackBarVisibility}
+                message={snackBarMessage}/>
         </View>
     )
 }
 
 const style = StyleSheet.create({
     container: {
-        alignItems: "center"
+        flex: 1,
+        flexDirection: "column",
+        alignItems: 'center',
+        //backgroundColor: 'orange',
     },
     titleContainer: {
-        alignItems: "center"
-    },
-    title: {
-        paddingBottom: 10,
-        fontSize: 22,
-        fontWeight: "bold",
-    },
-    guessViewsContainer: {
-        padding: 6,
-        margin: 10,
-        backgroundColor: '#ededed',
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: MainGreyColor,
-    },
-    guessNumberTextContainer: {
-        alignItems: "center",
-        borderBottomWidth: 1.5,
+        paddingHorizontal: 80,
+        borderBottomWidth: 2,
         borderBottomColor: MainGreyColor,
     },
-    guessNumberText: {
-        fontSize: 28,
-    },
-    questionTextContainer: {
-        alignItems: "center"
-    },
-    questionText: {
+    title: {
+        padding: 0,
+        fontSize: 25,
         fontWeight: "bold",
-        fontSize: 20,
+    },
+    imageViewContainer: {
+        marginBottom: 10,
+        //backgroundColor: "green",
+    },
+    userInterfaceContainer: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    inputText: {
+        maxWidth:  250,
+        minWidth: 210,
+        padding: 10,
+        margin: 10,
+        textAlign: 'center',
+        fontSize: 28,
+        borderRadius: 7,
+        borderWidth: 1.3,
+        backgroundColor: '#d8d7d7',
+        borderColor: '#918F8FE5',
     },
     containerButtons: {
         flexDirection: "row",
-        margin: 6,
     },
-    incrementButton: {
-        padding: 2,
-        margin: 14,
-        backgroundColor: "#65c50c",
+    confirmButton: {
+        paddingHorizontal: 8,
+        margin: 12,
+        backgroundColor: "#1a8eaa",
         borderRadius: 10,
     },
-    decreaseButton: {
-        padding: 2,
-        margin: 14,
-        backgroundColor: "#f8ab44",
+    cancelButton: {
+        paddingHorizontal: 8,
+        margin: 12,
+        backgroundColor: "#d33a3a",
         borderRadius: 10,
     },
 })

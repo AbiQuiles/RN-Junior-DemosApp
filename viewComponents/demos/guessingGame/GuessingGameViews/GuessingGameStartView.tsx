@@ -3,11 +3,11 @@ import PrimaryButtonView from "../../../mainViewComponents/PrimaryButtonView";
 import React from "react";
 import {MainGreyColor} from "../../../Resources/ColorResources";
 
-interface GuessingGameGuessViewProps {
+interface GuessingGameStartViewProps {
     numberToGuess: string
 }
 
-export default function GuessingGameGuessView({numberToGuess}:GuessingGameGuessViewProps) {
+export default function GuessingGameStartView({numberToGuess}:GuessingGameStartViewProps) {
 
     const randomNumberGenerator = (max: number = 99, min: number = 1): string => {
         const parseNumber = parseInt(numberToGuess)

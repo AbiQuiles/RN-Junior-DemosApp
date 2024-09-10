@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import {StyleSheet, Text, TextInput, View} from "react-native";
-import PrimaryButtonView from "../../mainViewComponents/PrimaryButtonView";
+import PrimaryButtonView from "../../../mainViewComponents/PrimaryButtonView";
 import {
     GuessingCancelString,
     GuessingConfirmString,
     InvalidNumberMessage,
     InvalidNumericTypeMessage
-} from "./GuessingGameStringResource";
-import MainSnackBarViewHandler from "../../mainViewComponents/snackBar/MainSnackBarViewHandler";
-import {SnackBarTypes} from "../../mainViewComponents/snackBar/SnackBarTypes";
-import GuessingGameImageViewHandler from "./GuessingGameViewHandler";
-import {GuessingGameViewType} from "./GuessingGameViewType";
-import {MainGreyColor} from "../../Resources/ColorResources";
+} from "../GuessingGameStringResource";
+import MainSnackBarViewHandler from "../../../mainViewComponents/snackBar/MainSnackBarViewHandler";
+import {SnackBarTypes} from "../../../mainViewComponents/snackBar/SnackBarTypes";
+import GuessingGameImageViewHandler from "../GuessingGameViewHandler";
+import {GuessingGameViewType} from "../GuessingGameViewType";
+import {MainGreyColor} from "../../../Resources/ColorResources";
 
 export default function GuessingGameView() {
     const [gameViewType, setGameViewType] = React.useState<GuessingGameViewType>()

@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import TodoInputView from "../todoList/TodoInputView";
 import TodoListView from "../todoList/TodoListView";
 import {TodoItem} from "../todoList/TodoItemView";
-import GuessingGameView from "../guessingGame/GuessingGameView";
+import GuessingGameView from "../guessingGame/GuessingGameViews/GuessingGameView";
 import {DemosModalType} from "./DemosModalType";
 
 interface DemosModalHandlerProps {

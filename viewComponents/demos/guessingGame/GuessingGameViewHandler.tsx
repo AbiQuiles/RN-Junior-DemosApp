@@ -1,8 +1,8 @@
-import {Image, ImageSourcePropType, StyleSheet, View} from "react-native";
 import React, {ReactElement, useEffect} from "react";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
 import {GuessingGameViewType} from "./GuessingGameViewType";
 import GuessingGameGuessView from "./GuessingGameViews/GuessingGameGuessView";
+import {Image, ImageSourcePropType, StyleSheet, View} from "react-native";
 
 interface GuessingGameViewHandlerProps {
     gameViewType: GuessingGameViewType | undefined;

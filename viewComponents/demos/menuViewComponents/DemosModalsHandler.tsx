@@ -5,7 +5,8 @@ import TodoInputView from "../todoList/TodoInputView";
 import TodoListView from "../todoList/TodoListView";
 import {TodoItem} from "../todoList/TodoItemView";
 import GuessingGameStartView from "../guessingGame/GuessingGameViews/GuessingGameStartView";
-import {DemosModalType} from "./DemosModalType";
+import {DemosType} from "./DemosType";
+import PlaygroundView from "../playground/PlaygroundView";
 
 interface DemosModalHandlerProps {
     type: DemosModalType
@@ -24,6 +25,8 @@ export default function DemosModalViewHandler(props: DemosModalHandlerProps) {
             return <TodoListModal {...props}/>
         case DemosModalType.GuessingGame:
             return <GuessingGameModal {...props}/>
+        case DemosType.Playground:
+            return <PlaygroundModal {...props}/>
     }
 
 }

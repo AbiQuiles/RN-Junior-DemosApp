@@ -1,12 +1,11 @@
 import React, {useState} from "react";
 import {View} from "react-native";
-import {TodoListString} from "./TodoListStringResources";
 import DemosMenuItem from "../menuViewComponents/DemosMenuItem";
 import DemosModalViewHandler from "../menuViewComponents/DemosModalsHandler";
-import {TodoDemoImage} from "../../Resources/ImagesResources";
 import {DemosType} from "../menuViewComponents/DemosType";
+import {PlaygroundImage} from "../../Resources/ImagesResources";
 
-export default function TodoListMenuView() {
+export default function PlaygroundMenuView() {
     const [modalVisibility, setModalVisibility] = useState<boolean>(false)
     const modalVisibilityHandler = () => {
         if (!modalVisibility) {
@@ -19,12 +18,12 @@ export default function TodoListMenuView() {
     return (
         <View>
             <DemosMenuItem
-                title={TodoListString}
-                image={TodoDemoImage}
+                title={'Playground'}
+                image={PlaygroundImage}
                 pressEvent={modalVisibilityHandler}>
             </DemosMenuItem>
             <DemosModalViewHandler
-                type={DemosType.TodoItems}
+                type={DemosType.Playground}
                 visibility={modalVisibility}
                 backPressEvent={modalVisibilityHandler}/>
         </View>

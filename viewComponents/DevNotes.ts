@@ -21,7 +21,7 @@
 
     Example:
             <ImageBackground
-                    source={require('../../assets/images/gameBackground.png')}
+                    source={}
                     resizeMode={"cover"}
             </ImageBackground>
 */

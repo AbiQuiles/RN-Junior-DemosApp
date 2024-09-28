@@ -4,7 +4,7 @@ import {GuessingGameString} from "./GuessingGameStringResource";
 import DemosMenuItem from "../menuViewComponents/DemosMenuItem";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
 import DemosModalViewHandler from "../menuViewComponents/DemosModalsHandler";
-import {DemosModalType} from "../menuViewComponents/DemosModalType";
+import {DemosType} from "../menuViewComponents/DemosType";
 
 export default function GuessingGameMenuView() {
     const [modalVisibility, setModalVisibility] = useState<boolean>(false)
@@ -24,7 +24,7 @@ export default function GuessingGameMenuView() {
                 pressEvent={modalVisibilityHandler}>
             </DemosMenuItem>
             <DemosModalViewHandler
-                type={DemosModalType.GuessingGame}
+                type={DemosType.GuessingGame}
                 visibility={modalVisibility}
                 backPressEvent={modalVisibilityHandler}/>
         </View>

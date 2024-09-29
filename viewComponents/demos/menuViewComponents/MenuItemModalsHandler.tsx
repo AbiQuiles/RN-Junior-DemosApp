@@ -9,7 +9,7 @@ import {DemosType} from "./DemosType";
 import PlaygroundView from "../playground/PlaygroundView";
 
 interface DemosModalHandlerProps {
-    type: DemosModalType
+    type: DemosType
     visibility: boolean
     backPressEvent: () => void
 }
@@ -21,9 +21,9 @@ interface DemosModalProps {
 
 export default function DemosModalViewHandler(props: DemosModalHandlerProps) {
     switch(props.type){
-        case DemosModalType.TodoItems:
+        case DemosType.TodoItems:
             return <TodoListModal {...props}/>
-        case DemosModalType.GuessingGame:
+        case DemosType.GuessingGame:
             return <GuessingGameModal {...props}/>
         case DemosType.Playground:
             return <PlaygroundModal {...props}/>
@@ -95,6 +95,19 @@ function GuessingGameModal({visibility, backPressEvent}: DemosModalProps) {
                 visible={visibility}>
                 <MainBackButton pressEvent={backPressEvent}/>
                 <GuessingGameStartView/>
+            </Modal>
+        </View>
+    )
+}
+
+function PlaygroundModal({visibility, backPressEvent}: DemosModalProps) {
+    return(
+        <View>
+            <Modal
+                animationType={'slide'}
+                visible={visibility}>
+                <MainBackButton pressEvent={backPressEvent}/>
+                <PlaygroundView/>
             </Modal>
         </View>
     )

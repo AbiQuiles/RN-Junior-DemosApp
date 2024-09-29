@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {View} from "react-native";
 import {GuessingGameString} from "./GuessingGameStringResource";
-import DemosMenuItem from "../menuViewComponents/DemosMenuItem";
+import MenuItem from "../menuViewComponents/MenuItem";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
-import DemosModalViewHandler from "../menuViewComponents/DemosModalsHandler";
+import DemosModalViewHandler from "../menuViewComponents/MenuItemModalsHandler";
 import {DemosType} from "../menuViewComponents/DemosType";
 
 export default function GuessingGameMenuView() {
@@ -18,11 +18,11 @@ export default function GuessingGameMenuView() {
 
     return (
         <View>
-            <DemosMenuItem
+            <MenuItem
                 title={GuessingGameString}
                 image={GuessingGameImage}
                 pressEvent={modalVisibilityHandler}>
-            </DemosMenuItem>
+            </MenuItem>
             <DemosModalViewHandler
                 type={DemosType.GuessingGame}
                 visibility={modalVisibility}

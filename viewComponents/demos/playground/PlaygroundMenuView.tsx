@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {View} from "react-native";
-import DemosMenuItem from "../menuViewComponents/DemosMenuItem";
-import DemosModalViewHandler from "../menuViewComponents/DemosModalsHandler";
+import MenuItem from "../menuViewComponents/MenuItem";
+import DemosModalViewHandler from "../menuViewComponents/MenuItemModalsHandler";
 import {DemosType} from "../menuViewComponents/DemosType";
 import {PlaygroundImage} from "../../Resources/ImagesResources";
 
@@ -17,11 +17,11 @@ export default function PlaygroundMenuView() {
 
     return (
         <View>
-            <DemosMenuItem
+            <MenuItem
                 title={'Playground'}
                 image={PlaygroundImage}
                 pressEvent={modalVisibilityHandler}>
-            </DemosMenuItem>
+            </MenuItem>
             <DemosModalViewHandler
                 type={DemosType.Playground}
                 visibility={modalVisibility}

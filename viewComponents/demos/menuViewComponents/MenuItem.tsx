@@ -8,7 +8,7 @@ interface DemosMenuItemProps {
     pressEvent: () => void
 }
 
-export default function DemosMenuItem(props: DemosMenuItemProps) {
+export default function MenuItem(props: DemosMenuItemProps) {
     return(
         <View style={styles.container}>
             <Pressable

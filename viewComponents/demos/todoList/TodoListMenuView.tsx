@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {View} from "react-native";
 import {TodoListString} from "./TodoListStringResources";
-import DemosMenuItem from "../menuViewComponents/DemosMenuItem";
-import DemosModalViewHandler from "../menuViewComponents/DemosModalsHandler";
+import MenuItem from "../menuViewComponents/MenuItem";
+import DemosModalViewHandler from "../menuViewComponents/MenuItemModalsHandler";
 import {TodoDemoImage} from "../../Resources/ImagesResources";
 import {DemosType} from "../menuViewComponents/DemosType";
 
@@ -18,11 +18,11 @@ export default function TodoListMenuView() {
 
     return (
         <View>
-            <DemosMenuItem
+            <MenuItem
                 title={TodoListString}
                 image={TodoDemoImage}
                 pressEvent={modalVisibilityHandler}>
-            </DemosMenuItem>
+            </MenuItem>
             <DemosModalViewHandler
                 type={DemosType.TodoItems}
                 visibility={modalVisibility}

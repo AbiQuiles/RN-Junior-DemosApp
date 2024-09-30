@@ -5,6 +5,8 @@ import MenuItem from "../menuViewComponents/MenuItem";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
 import DemosModalViewHandler from "../menuViewComponents/MenuItemModalsHandler";
 import {DemosType} from "../menuViewComponents/DemosType";
+import {useNavigation} from "@react-navigation/native";
+import {MenuNavigationKeys} from "../menuViewComponents/MenuNavigationHandler";
 
 export default function GuessingGameMenuView() {
     const [modalVisibility, setModalVisibility] = useState<boolean>(false)
@@ -16,17 +18,19 @@ export default function GuessingGameMenuView() {
         }
     }
 
+    const navigation = useNavigation();
+
     return (
         <View>
             <MenuItem
                 title={GuessingGameString}
                 image={GuessingGameImage}
-                pressEvent={modalVisibilityHandler}>
+                pressEvent={() => navigation.navigate(MenuNavigationKeys.GuessingGame)}>
             </MenuItem>
-            <DemosModalViewHandler
+            {/*<DemosModalViewHandler
                 type={DemosType.GuessingGame}
                 visibility={modalVisibility}
-                backPressEvent={modalVisibilityHandler}/>
+                backPressEvent={modalVisibilityHandler}/>*/}
         </View>
     )
 }

@@ -1,5 +1,4 @@
 import {SafeAreaView, ScrollView, StyleSheet, View} from "react-native";
-import {GetDeviceViewStyling} from "../../DeviceStyleManager";
 import TodoListMenuView from "../todoList/TodoListMenuView";
 import GuessingGameMenuView from "../guessingGame/GuessingGameMenuView";
 import PlaygroundMenuView from "../playground/PlaygroundMenuView";
@@ -8,9 +7,7 @@ import React from "react";
 export default function MenuView() {
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={GetDeviceViewStyling(
-                undefined,
-                stylesAndroid.scrollView)}>
+            <ScrollView>
                 <View style={styles.item}>
                     <TodoListMenuView/>
                 </View>
@@ -20,8 +17,6 @@ export default function MenuView() {
                 <View style={styles.item}>
                     <PlaygroundMenuView/>
                 </View>
-                <View style={styles.item}>
-                </View>
             </ScrollView>
         </SafeAreaView>
     )
@@ -30,6 +25,7 @@ export default function MenuView() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: 15
     },
     item: {
         flex: 1,
@@ -38,8 +34,3 @@ const styles = StyleSheet.create({
     },
 })
 
-const stylesAndroid = StyleSheet.create({
-    scrollView: {
-        marginVertical: 60
-    },
-})

@@ -4,6 +4,8 @@ import MenuItem from "../menuViewComponents/MenuItem";
 import DemosModalViewHandler from "../menuViewComponents/MenuItemModalsHandler";
 import {DemosType} from "../menuViewComponents/DemosType";
 import {PlaygroundImage} from "../../Resources/ImagesResources";
+import {NavigationProp, useNavigation} from "@react-navigation/native";
+import {MenuNavigationKeys} from "../menuViewComponents/MenuNavigationHandler";
 
 export default function PlaygroundMenuView() {
     const [modalVisibility, setModalVisibility] = useState<boolean>(false)
@@ -15,17 +17,19 @@ export default function PlaygroundMenuView() {
         }
     }
 
+    const navigation = useNavigation();
+
     return (
         <View>
             <MenuItem
                 title={'Playground'}
                 image={PlaygroundImage}
-                pressEvent={modalVisibilityHandler}>
+                pressEvent={() => navigation.navigate(MenuNavigationKeys.Playground)}>
             </MenuItem>
-            <DemosModalViewHandler
+            {/*<DemosModalViewHandler
                 type={DemosType.Playground}
                 visibility={modalVisibility}
-                backPressEvent={modalVisibilityHandler}/>
+                backPressEvent={modalVisibilityHandler}/>*/}
         </View>
     )
 }

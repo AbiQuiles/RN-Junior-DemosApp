@@ -1,22 +1,58 @@
-import React from "react";
+import React, {ReactElement} from "react";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
 import MenuView from "./MenuView";
+import PlaygroundView from "../playground/PlaygroundView";
+import GuessingGameStartView from "../guessingGame/GuessingGameViews/GuessingGameStartView";
+import {BackString} from "../../Resources/StringRecources";
+import TodoView from "../todoList/TodoView";
+
+export enum MenuNavigationKeys {
+    Menu = "Menu",
+    TodoList = "TodoList",
+    GuessingGame = "GuessingGame",
+    Playground = "Playground",
+}
+
+/*
+type ViewsStack = {
+    First: ReactElement
+    Second: ReactElement
+}
+*/
 
 export default function MenuNavigationHandler() {
-    const DemoMenuNavKey = 'DemosMenu'
     const Stack = createNativeStackNavigator()
+
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen
-                    options={{
-                        presentation: 'modal',
-                        headerShown: false
-                    }}
-                    name={DemoMenuNavKey}
-                    component={MenuView}/>
+            <Stack.Navigator initialRouteName={MenuNavigationKeys.Menu}>
+                    <Stack.Group screenOptions={{headerTitle: ''}}>
+                        <Stack.Screen
+                            name={MenuNavigationKeys.Menu}
+                            component={MenuView}
+                        />
+                        <Stack.Screen
+                            name={MenuNavigationKeys.TodoList}
+                            component={TodoView}
+                            options={{headerBackTitle: BackString}}
+                        />
+                        <Stack.Screen
+                            name={MenuNavigationKeys.GuessingGame}
+                            component={GuessingGameStartView}
+                            options={{headerBackTitle: BackString}}
+                        />
+                        <Stack.Screen
+                            name={MenuNavigationKeys.Playground}
+                            component={PlaygroundView}
+                            options={{headerBackTitle: BackString}}
+                        />
+                    </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
     )
 }
+
+/*
+presentation: 'modal',
+    headerShown: false*/

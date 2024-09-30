@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from "react-native";
-import PrimaryButtonView from "../../../mainViewComponents/PrimaryButtonView";
+import PrimaryButtonView from "../../../recyclableViewComponents/PrimaryButtonView";
 import React from "react";
 import {MainGreyColor} from "../../../Resources/ColorResources";
 

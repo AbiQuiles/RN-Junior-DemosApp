@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import {StyleSheet, Text, TextInput, View} from "react-native";
-import PrimaryButtonView from "../../../mainViewComponents/PrimaryButtonView";
+import PrimaryButtonView from "../../../recyclableViewComponents/PrimaryButtonView";
 import {
     GuessingCancelString,
     GuessingConfirmString,
     InvalidNumberMessage,
     InvalidNumericTypeMessage
 } from "../GuessingGameStringResource";
-import MainSnackBarViewHandler from "../../../mainViewComponents/snackBar/MainSnackBarViewHandler";
-import {SnackBarTypes} from "../../../mainViewComponents/snackBar/SnackBarTypes";
+import MainSnackBarViewHandler from "../../../recyclableViewComponents/snackBar/MainSnackBarViewHandler";
+import {SnackBarTypes} from "../../../recyclableViewComponents/snackBar/SnackBarTypes";
 import GuessingGameImageViewHandler from "../GuessingGameViewHandler";
 import {GuessingGameViewType} from "../GuessingGameViewType";
 import {MainGreyColor} from "../../../Resources/ColorResources";

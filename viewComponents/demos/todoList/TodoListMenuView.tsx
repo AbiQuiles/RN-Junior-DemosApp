@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {View} from "react-native";
 import {TodoListString} from "./TodoListStringResources";
-import MenuItem from "../menuViewComponents/MenuItem";
-import DemosModalViewHandler from "../menuViewComponents/MenuItemModalsHandler";
+import MenuItem from "../demosMenu/MenuItem";
+import DemosModalViewHandler from "../demosMenu/MenuItemModalsHandler";
 import {TodoDemoImage} from "../../Resources/ImagesResources";
-import {DemosType} from "../menuViewComponents/DemosType";
+import {DemosType} from "../demosMenu/DemosType";
 import {useNavigation} from "@react-navigation/native";
-import {MenuNavigationKeys} from "../menuViewComponents/MenuNavigationHandler";
+import {MenuNavigationKeys} from "../demosMenu/MenuNavigationKeys";
 
 export default function TodoListMenuView() {
     const [modalVisibility, setModalVisibility] = useState<boolean>(false)

@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {View} from "react-native";
 import {GuessingGameString} from "./GuessingGameStringResource";
-import MenuItem from "../menuViewComponents/MenuItem";
+import MenuItem from "../demosMenu/MenuItem";
 import {GuessingGameImage} from "../../Resources/ImagesResources";
-import DemosModalViewHandler from "../menuViewComponents/MenuItemModalsHandler";
-import {DemosType} from "../menuViewComponents/DemosType";
+import DemosModalViewHandler from "../demosMenu/MenuItemModalsHandler";
+import {DemosType} from "../demosMenu/DemosType";
 import {useNavigation} from "@react-navigation/native";
-import {MenuNavigationKeys} from "../menuViewComponents/MenuNavigationHandler";
+import {MenuNavigationKeys} from "../demosMenu/MenuNavigationKeys";
 
 export default function GuessingGameMenuView() {
     const [modalVisibility, setModalVisibility] = useState<boolean>(false)

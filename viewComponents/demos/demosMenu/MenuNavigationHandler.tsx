@@ -6,13 +6,7 @@ import PlaygroundView from "../playground/PlaygroundView";
 import GuessingGameStartView from "../guessingGame/GuessingGameViews/GuessingGameStartView";
 import {BackString} from "../../Resources/StringRecources";
 import TodoView from "../todoList/TodoView";
-
-export enum MenuNavigationKeys {
-    Menu = "Menu",
-    TodoList = "TodoList",
-    GuessingGame = "GuessingGame",
-    Playground = "Playground",
-}
+import {MenuNavigationKeys} from "./MenuNavigationKeys";
 
 /*
 type ViewsStack = {

@@ -1,10 +1,5 @@
-import {Modal, View} from "react-native";
-import MainBackButton from "./MainBackButton";
+import {View} from "react-native";
 import React from "react";
-import GuessingGameStartView from "../demos/guessingGame/GuessingGameViews/GuessingGameStartView";
-import PlaygroundView from "../demos/playground/PlaygroundView";
-import TodoView from "../demos/todoList/TodoView";
-
 
 /* History of Code:
     This was the main way to navigate the menus at the initialization of the app.
@@ -54,12 +49,12 @@ export default function DemosModalViewHandler(props: DemosModalHandlerProps) {
 function TodoListModal({visibility, backPressEvent}: DemosModalProps) {
     return (
         <View>
-            <Modal
+            {/*<Modal
                 animationType={'slide'}
                 visible={visibility}>
                 <MainBackButton pressEvent={backPressEvent}/>
                 <TodoView/>
-            </Modal>
+            </Modal>*/}
         </View>
     )
 }
@@ -67,12 +62,12 @@ function TodoListModal({visibility, backPressEvent}: DemosModalProps) {
 function GuessingGameModal({visibility, backPressEvent}: DemosModalProps) {
     return(
         <View>
-            <Modal
+            {/*<Modal
                 animationType={'slide'}
                 visible={visibility}>
                 <MainBackButton pressEvent={backPressEvent}/>
                 <GuessingGameStartView/>
-            </Modal>
+            </Modal>*/}
         </View>
     )
 }
@@ -80,12 +75,12 @@ function GuessingGameModal({visibility, backPressEvent}: DemosModalProps) {
 function PlaygroundModal({visibility, backPressEvent}: DemosModalProps) {
     return(
         <View>
-            <Modal
+            {/*<Modal
                 animationType={'slide'}
                 visible={visibility}>
                 <MainBackButton pressEvent={backPressEvent}/>
                 <PlaygroundView/>
-            </Modal>
+            </Modal>*/}
         </View>
     )
 }

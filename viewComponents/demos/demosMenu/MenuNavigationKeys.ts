@@ -5,3 +5,10 @@ export enum MenuNavigationKeys {
     GuessingGame = "GuessingGame",
     Playground = "Playground",
 }
+
+export type MenuNavigatorParamList =  {
+    Menu: undefined
+    TodoList: undefined
+    GuessingGame: undefined
+    Playground: undefined
+}

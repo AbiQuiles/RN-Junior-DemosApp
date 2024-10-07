@@ -1,22 +1,15 @@
-import React, {ReactElement} from "react";
+import React from "react";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
-import MenuView from "./MenuView";
 import PlaygroundView from "../playground/PlaygroundView";
 import GuessingGameStartView from "../guessingGame/GuessingGameViews/GuessingGameStartView";
 import {BackString} from "../../Resources/StringRecources";
 import TodoView from "../todoList/TodoView";
-import {MenuNavigationKeys} from "./MenuNavigationKeys";
-
-/*
-type ViewsStack = {
-    First: ReactElement
-    Second: ReactElement
-}
-*/
+import {MenuNavigationKeys, MenuNavigatorParamList} from "./MenuNavigationKeys";
+import MenuView from "./MenuView";
 
 export default function MenuNavigationHandler() {
-    const Stack = createNativeStackNavigator()
+    const Stack = createNativeStackNavigator<MenuNavigatorParamList>()
 
     return (
         <NavigationContainer>
@@ -46,7 +39,6 @@ export default function MenuNavigationHandler() {
         </NavigationContainer>
     )
 }
-
 /*
 presentation: 'modal',
     headerShown: false*/

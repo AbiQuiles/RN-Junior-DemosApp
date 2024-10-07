@@ -3,4 +3,5 @@ import MenuNavigationHandler from "./viewComponents/demos/demosMenu/MenuNavigati
 
 export default function App() {
     return <MenuNavigationHandler/>
+    //return <PlaygroundView/>
 }

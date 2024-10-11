@@ -2,11 +2,11 @@ import React from "react";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
 import PlaygroundView from "../playground/PlaygroundView";
-import GuessingGameStartView from "../guessingGame/GuessingGameViews/GuessingGameStartView";
 import {BackString} from "../../Resources/StringRecources";
 import TodoView from "../todoList/TodoView";
 import {MenuNavigationKeys, MenuNavigatorParamList} from "./MenuNavigationKeys";
 import MenuView from "./MenuView";
+import GuessingGameNavigator from "../guessingGame/GuessingGameNavigationHandler";
 
 export default function MenuNavigationHandler() {
     const Stack = createNativeStackNavigator<MenuNavigatorParamList>()
@@ -26,7 +26,7 @@ export default function MenuNavigationHandler() {
                         />
                         <Stack.Screen
                             name={MenuNavigationKeys.GuessingGame}
-                            component={GuessingGameStartView}
+                            component={GuessingGameNavigator}
                             options={{headerBackTitle: BackString}}
                         />
                         <Stack.Screen

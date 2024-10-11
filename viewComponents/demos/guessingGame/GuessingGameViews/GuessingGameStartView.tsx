@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {StyleSheet, Text, TextInput, View} from "react-native";
+import React, {useEffect, useState} from "react";
+import {Image, StyleSheet, TextInput, View} from "react-native";
 import PrimaryButtonView from "../../../recyclableViewComponents/PrimaryButtonView";
 import {
     GuessingCancelString,
@@ -9,12 +9,21 @@ import {
 } from "../GuessingGameStringResource";
 import MainSnackBarViewHandler from "../../../recyclableViewComponents/snackBar/MainSnackBarViewHandler";
 import {SnackBarTypes} from "../../../recyclableViewComponents/snackBar/SnackBarTypes";
-import GuessingGameImageViewHandler from "../GuessingGameViewHandler";
-import {GuessingGameViewType} from "../GuessingGameViewType";
 import {MainGreyColor} from "../../../Resources/ColorResources";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {GuessingGameNavigationKeys, GuessingGameNavigatorParamList} from "../GuessingGameNavigationHandler";
+import {GuessingGameImage} from "../../../Resources/ImagesResources";
+import {useNavigation} from "@react-navigation/native";
+
+type GuessingGameStartNavProps = NativeStackScreenProps<
+    GuessingGameNavigatorParamList,
+    GuessingGameNavigationKeys.GameStart
+>
+
+type GuessingGameStartNav = GuessingGameStartNavProps['navigation'];
 
 export default function GuessingGameStartView() {
-    const [gameViewType, setGameViewType] = React.useState<GuessingGameViewType>()
+    const navigation = useNavigation<GuessingGameStartNav>()
     const [inputNumber,setInputNumber] = useState<string>();
     const [numberToGuess, setNumberToGuess] = useState<string>()
     const [snackBarType, setSnackBarType] = useState<SnackBarTypes>(SnackBarTypes.Info);
@@ -36,7 +45,6 @@ export default function GuessingGameStartView() {
             setSnackBarMessage(InvalidNumberMessage)
         } else {
             setSnackBarVisibility(false)
-            setGameViewType(GuessingGameViewType.Guessing)
             setNumberToGuess(newText)
         }
         setInputNumber(newText);
@@ -51,37 +59,44 @@ export default function GuessingGameStartView() {
     const pressCancelEvent = () => {
         setInputNumber("")
         setSnackBarVisibility(false)
-        setGameViewType(undefined)
     }
 
-    return(
+    useEffect(() => {
+        if (numberToGuess !== undefined) {
+            navigation.navigate(
+                GuessingGameNavigationKeys.GameGuess,
+                {numberToGuess: numberToGuess}
+            )
+        }
+    }, [numberToGuess])
+
+    return (
         <View style={style.container}>
-            <View style={style.titleContainer}>
-                <Text style={style.title}>Guessing Game</Text>
-            </View>
-            <View style={style.imageViewContainer}>
-                <GuessingGameImageViewHandler
-                    gameViewType={gameViewType}
-                    numberToGuess={numberToGuess}
-                />
-            </View>
-            <View style={style.userInterfaceContainer}>
-                <TextInput
-                    style={style.inputText}
-                    keyboardType={"numeric"}
-                    maxLength={2}
-                    placeholder={"Number Input"}
-                    onChangeText={setInputNumber}
-                    value={inputNumber}/>
-                <View style={style.containerButtons}>
-                    <PrimaryButtonView
-                        styleContainer={style.confirmButton}
-                        text={GuessingConfirmString}
-                        pressEvent={pressConfirmEvent}/>
-                    <PrimaryButtonView
-                        styleContainer={style.cancelButton}
-                        text={GuessingCancelString}
-                        pressEvent={pressCancelEvent}/>
+            <View style={style.gameContainer}>
+                <View style={style.imageViewContainer}>
+                    <Image
+                        style={style.imageStyling}
+                        source={GuessingGameImage}>
+                    </Image>
+                </View>
+                <View style={style.userInterfaceContainer}>
+                    <TextInput
+                        style={style.inputText}
+                        keyboardType={"numeric"}
+                        maxLength={2}
+                        placeholder={"Number Input"}
+                        onChangeText={setInputNumber}
+                        value={inputNumber}/>
+                    <View style={style.containerButtons}>
+                        <PrimaryButtonView
+                            styleContainer={style.confirmButton}
+                            text={GuessingConfirmString}
+                            pressEvent={pressConfirmEvent}/>
+                        <PrimaryButtonView
+                            styleContainer={style.cancelButton}
+                            text={GuessingCancelString}
+                            pressEvent={pressCancelEvent}/>
+                    </View>
                 </View>
             </View>
             <MainSnackBarViewHandler
@@ -97,21 +112,27 @@ const style = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         alignItems: 'center',
-        //backgroundColor: 'orange',
+        borderColor: MainGreyColor,
+        backgroundColor: 'white',
     },
-    titleContainer: {
-        paddingHorizontal: 80,
-        borderBottomWidth: 2,
-        borderBottomColor: MainGreyColor,
-    },
-    title: {
-        padding: 0,
-        fontSize: 25,
-        fontWeight: "bold",
+    gameContainer: {
+        flexDirection: "column",
+        alignItems: 'center',
     },
     imageViewContainer: {
-        marginBottom: 10,
-        //backgroundColor: "green",
+        //marginBottom: 10,
+    },
+    imageStyling : {
+        width: 160,
+        height: 140,
+    },
+    titleContainer: {
+        alignItems: "center",
+        margin: 15
+    },
+    title: {
+        fontSize: 22,
+        fontWeight: "bold",
     },
     userInterfaceContainer: {
         flex: 1,

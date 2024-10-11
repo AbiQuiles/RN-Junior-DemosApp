@@ -2,13 +2,18 @@ import {StyleSheet, Text, View} from "react-native";
 import PrimaryButtonView from "../../../recyclableViewComponents/PrimaryButtonView";
 import React from "react";
 import {MainGreyColor} from "../../../Resources/ColorResources";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {GuessingGameNavigationKeys, GuessingGameNavigatorParamList} from "../GuessingGameNavigationHandler";
 
-interface GuessingGameGuessViewProps {
-    numberToGuess: string
-}
+type GuessingGameGuessNavProps = NativeStackScreenProps<
+    GuessingGameNavigatorParamList,
+    GuessingGameNavigationKeys.GameGuess
+>
 
-export default function GuessingGameGuessView({numberToGuess}:GuessingGameGuessViewProps) {
+type GuessingGameGuessProps = GuessingGameGuessNavProps['navigation'];
 
+export default function GuessingGameGuessView({route}: GuessingGameGuessNavProps) {
+    const numberToGuess = route.params.numberToGuess;
     const randomNumberGenerator = (max: number = 99, min: number = 1): string => {
         const parseNumber = parseInt(numberToGuess)
         /*const xam = max ? max : 99 | parseNumber - 1
@@ -49,9 +54,6 @@ export default function GuessingGameGuessView({numberToGuess}:GuessingGameGuessV
     return (
         <View style={style.container}>
             <View style={style.guessViewsContainer}>
-                <View style={style.titleContainer}>
-                    <Text style={style.title}>App Guess</Text>
-                </View>
                 <View style={style.guessNumberTextContainer}>
                     <Text style={style.guessNumberText}>
                         {randomNumberGenerator()}
@@ -84,10 +86,13 @@ export default function GuessingGameGuessView({numberToGuess}:GuessingGameGuessV
 
 const style = StyleSheet.create({
     container: {
-        alignItems: "center"
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: 'white',
     },
     titleContainer: {
-        alignItems: "center"
+        alignItems: "center",
+        margin: 15
     },
     title: {
         paddingBottom: 10,
@@ -95,23 +100,21 @@ const style = StyleSheet.create({
         fontWeight: "bold",
     },
     guessViewsContainer: {
-        padding: 6,
+        padding: 50,
         margin: 10,
-        backgroundColor: '#ededed',
-        borderWidth: 1,
-        borderRadius: 10,
-        borderColor: MainGreyColor,
     },
     guessNumberTextContainer: {
         alignItems: "center",
         borderBottomWidth: 1.5,
         borderBottomColor: MainGreyColor,
+        backgroundColor: 'white',
     },
     guessNumberText: {
-        fontSize: 28,
+        fontSize: 60,
     },
     questionTextContainer: {
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 25
     },
     questionText: {
         fontWeight: "bold",
@@ -119,7 +122,7 @@ const style = StyleSheet.create({
     },
     containerButtons: {
         flexDirection: "row",
-        margin: 6,
+        marginTop: 25,
     },
     incrementButton: {
         padding: 2,

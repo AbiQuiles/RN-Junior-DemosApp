@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Image, StyleSheet, TextInput, View} from "react-native";
 import PrimaryButtonView from "../../../recyclableViewComponents/PrimaryButtonView";
 import {
@@ -7,11 +7,15 @@ import {
     InvalidNumberMessage,
     InvalidNumericTypeMessage
 } from "../GuessingGameStringResource";
-import MainSnackBarViewHandler from "../../../recyclableViewComponents/snackBar/MainSnackBarViewHandler";
 import {SnackBarTypes} from "../../../recyclableViewComponents/snackBar/SnackBarTypes";
 import {MainGreyColor} from "../../../Resources/ColorResources";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {GuessingGameNavigationKeys, GuessingGameNavigatorParamList} from "../GuessingGameNavigationHandler";
+import {
+    GuessingGameContext,
+    GuessingGameContextTypes,
+    GuessingGameNavigationKeys,
+    GuessingGameNavigatorParamList
+} from "../GuessingGameNavigationHandler";
 import {GuessingGameImage} from "../../../Resources/ImagesResources";
 import {useNavigation} from "@react-navigation/native";
 
@@ -26,9 +30,11 @@ export default function GuessingGameStartView() {
     const navigation = useNavigation<GuessingGameStartNav>()
     const [inputNumber,setInputNumber] = useState<string>();
     const [numberToGuess, setNumberToGuess] = useState<string>()
-    const [snackBarType, setSnackBarType] = useState<SnackBarTypes>(SnackBarTypes.Info);
-    const [snackBarVisibility, setSnackBarVisibility] = useState<boolean>(false);
-    const [snackBarMessage, setSnackBarMessage] = useState<string>();
+    const {
+        setSnackBarType,
+        setSnackBarVisibility,
+        setSnackBarMessage
+    } = useContext(GuessingGameContext) as GuessingGameContextTypes
 
     const inputNumberCheck = (newText: string) => {
         const parseToNumeric = parseInt(newText)
@@ -73,7 +79,7 @@ export default function GuessingGameStartView() {
     return (
         <View style={style.container}>
             <View style={style.gameContainer}>
-                <View style={style.imageViewContainer}>
+                <View>
                     <Image
                         style={style.imageStyling}
                         source={GuessingGameImage}>
@@ -99,10 +105,6 @@ export default function GuessingGameStartView() {
                     </View>
                 </View>
             </View>
-            <MainSnackBarViewHandler
-                type={snackBarType}
-                visible={snackBarVisibility}
-                message={snackBarMessage}/>
         </View>
     )
 }
@@ -118,9 +120,6 @@ const style = StyleSheet.create({
     gameContainer: {
         flexDirection: "column",
         alignItems: 'center',
-    },
-    imageViewContainer: {
-        //marginBottom: 10,
     },
     imageStyling : {
         width: 160,

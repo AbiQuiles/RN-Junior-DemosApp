@@ -3,7 +3,9 @@ import GuessingGameStartView from "./GuessingGameViews/GuessingGameStartView";
 import React, {createContext, useState} from "react";
 import GuessingGameGuessView from "./GuessingGameViews/GuessingGameGuessView";
 import {StyleSheet, View} from "react-native";
-import MainSnackBarViewHandler from "../../recyclableViewComponents/snackBar/MainSnackBarViewHandler";
+import MainSnackBarViewHandler, {
+    SnackBarContextProps
+} from "../../recyclableViewComponents/snackBar/MainSnackBarViewHandler";
 import {SnackBarTypes} from "../../recyclableViewComponents/snackBar/SnackBarTypes";
 
 export enum GuessingGameNavigationKeys {
@@ -19,9 +21,7 @@ export type GuessingGameNavigatorParamList =  {
 }
 
 export type GuessingGameContextTypes = {
-    setSnackBarType: (currentState: SnackBarTypes) => void
-    setSnackBarVisibility: (visible: boolean) => void
-    setSnackBarMessage: (message: string) => void
+    snackBarContext: SnackBarContextProps
 }
 
 export const GuessingGameContext = createContext<GuessingGameContextTypes | null>(null);
@@ -33,9 +33,14 @@ export default function GuessingGameNavigator() {
     const [snackBarVisibility, setSnackBarVisibility] = useState<boolean>(false);
     const [snackBarMessage, setSnackBarMessage] = useState<string>();
 
+    const snackBarContext: SnackBarContextProps = {
+        setSnackBarType,
+        setSnackBarVisibility,
+        setSnackBarMessage,
+    }
 
     return (
-        <GuessingGameContext.Provider value={{setSnackBarType, setSnackBarVisibility, setSnackBarMessage}}>
+        <GuessingGameContext.Provider value={{snackBarContext}}>
             <View style={styles.container}>
                 <View style={styles.gamesContainer}>
                     <Stack.Navigator

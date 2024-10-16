@@ -7,6 +7,12 @@ import {ErrorRedColor, InfoOrangeColor} from "../../Resources/ColorResources";
 import {ImageSourcePropType} from "react-native";
 import {ColorValue} from "react-native/Libraries/StyleSheet/StyleSheet";
 
+export type SnackBarContextProps = {
+    setSnackBarType: (currentState: SnackBarTypes) => void
+    setSnackBarVisibility: (visible: boolean) => void
+    setSnackBarMessage: (message: string) => void
+}
+
 interface MainSnackBarProps {
     type?: SnackBarTypes | undefined
     visible: boolean,

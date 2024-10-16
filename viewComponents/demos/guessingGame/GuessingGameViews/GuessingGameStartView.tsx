@@ -30,11 +30,7 @@ export default function GuessingGameStartView() {
     const navigation = useNavigation<GuessingGameStartNav>()
     const [inputNumber,setInputNumber] = useState<string>();
     const [numberToGuess, setNumberToGuess] = useState<string>()
-    const {
-        setSnackBarType,
-        setSnackBarVisibility,
-        setSnackBarMessage
-    } = useContext(GuessingGameContext) as GuessingGameContextTypes
+    const { snackBarContext } = useContext(GuessingGameContext) as GuessingGameContextTypes
 
     const inputNumberCheck = (newText: string) => {
         const parseToNumeric = parseInt(newText)
@@ -42,15 +38,15 @@ export default function GuessingGameStartView() {
         const numberLimitCheck = parseToNumeric <= 0 || parseToNumeric > 99
 
         if (numberCheck) {
-            setSnackBarType(SnackBarTypes.Error)
-            setSnackBarVisibility(true)
-            setSnackBarMessage(InvalidNumericTypeMessage)
+            snackBarContext.setSnackBarType(SnackBarTypes.Error)
+            snackBarContext.setSnackBarVisibility(true)
+            snackBarContext.setSnackBarMessage(InvalidNumericTypeMessage)
         } else if (numberLimitCheck) {
-            setSnackBarType(SnackBarTypes.Info)
-            setSnackBarVisibility(true)
-            setSnackBarMessage(InvalidNumberMessage)
+            snackBarContext.setSnackBarType(SnackBarTypes.Info)
+            snackBarContext.setSnackBarVisibility(true)
+            snackBarContext.setSnackBarMessage(InvalidNumberMessage)
         } else {
-            setSnackBarVisibility(false)
+            snackBarContext.setSnackBarVisibility(false)
             setNumberToGuess(newText)
         }
         setInputNumber(newText);
@@ -64,7 +60,7 @@ export default function GuessingGameStartView() {
 
     const pressCancelEvent = () => {
         setInputNumber("")
-        setSnackBarVisibility(false)
+        snackBarContext.setSnackBarVisibility(false)
     }
 
     useEffect(() => {

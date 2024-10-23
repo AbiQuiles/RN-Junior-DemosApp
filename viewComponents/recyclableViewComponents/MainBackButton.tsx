@@ -10,6 +10,7 @@ interface MainBackButtonProps {
 export default function MainBackButton({pressEvent}: MainBackButtonProps) {
     //TODO: Add React Navigation back functionalities so that is can get to the previews view
     // when use
+    // Implement destructuring
 
 
     return (

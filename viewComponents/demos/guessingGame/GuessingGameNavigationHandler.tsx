@@ -7,6 +7,7 @@ import MainSnackBarViewHandler, {
     SnackBarContextProps
 } from "../../recyclableViewComponents/snackBar/MainSnackBarViewHandler";
 import {SnackBarTypes} from "../../recyclableViewComponents/snackBar/SnackBarTypes";
+import {GetDeviceViewStyling} from "../../DeviceStyleManager";
 
 export enum GuessingGameNavigationKeys {
     GameStart = "GameStart",
@@ -42,7 +43,9 @@ export default function GuessingGameNavigator() {
     return (
         <GuessingGameContext.Provider value={{snackBarContext}}>
             <View style={styles.container}>
-                <View style={styles.gamesContainer}>
+                <View style={GetDeviceViewStyling(
+                    styles.gamesContainerIOS,
+                    styles.gamesContainerAndroid)}>
                     <Stack.Navigator
                         initialRouteName={GuessingGameNavigationKeys.GameStart}
                         screenOptions={{headerBackTitleVisible: false}}>
@@ -77,9 +80,14 @@ const styles = StyleSheet.create({
         //paddingBottom: 390,
         //backgroundColor: "green",
     },
-    gamesContainer: {
+    gamesContainerIOS: {
         flex: 2,
         paddingBottom: 350,
         //backgroundColor: "orange",
+    },
+    gamesContainerAndroid: {
+        flex: 2,
+        paddingBottom: 350,
+        //backgroundColor: "red",
     },
 })

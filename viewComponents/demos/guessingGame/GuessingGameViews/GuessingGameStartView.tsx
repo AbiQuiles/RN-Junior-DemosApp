@@ -121,14 +121,6 @@ const style = StyleSheet.create({
         width: 160,
         height: 140,
     },
-    titleContainer: {
-        alignItems: "center",
-        margin: 15
-    },
-    title: {
-        fontSize: 22,
-        fontWeight: "bold",
-    },
     userInterfaceContainer: {
         flex: 1,
         alignItems: 'center',

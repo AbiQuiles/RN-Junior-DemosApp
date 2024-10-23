@@ -1,5 +1,5 @@
-import {Image, Pressable, StyleSheet, Text, View} from "react-native";
-import React, {ReactElement} from "react";
+import {Image, Keyboard, KeyboardAvoidingView, Pressable, StyleSheet, Text, View} from "react-native";
+import React, {ReactElement, useEffect, useState} from "react";
 import {CloseIcon} from "../../Resources/IconResources";
 
 interface SnackBarTypesProps {
@@ -9,33 +9,77 @@ interface SnackBarTypesProps {
 }
 
 export default function SnackBarMainView(props: SnackBarTypesProps) {
-
+    const [rerender, setRerender] = useState(false);
     //TODO: Couldn't figure out how to make the snackBar view take the close pressEvent.
     // Will try this again along the road when I get more knowledge of view state handling.
     // I do something called 'Hooks' in RN will be the solution but couldn't figure it out yet.
 
-    return props.visible? (
-        <View style={styles.container}>
-            <View style={styles.firstContainer}>
-                {props.icon}
-                <Text style={styles.messageText}>
-                    {props.message}
-                </Text>
-                <Pressable>
-                    <View style={styles.closeImageContainer}>
-                        <Image style={styles.closeImageStyling}
-                               source={CloseIcon}>
-                        </Image>
-                    </View>
-                </Pressable>
+    const isKeyboardOpen = useKeyboard();
+
+    useEffect(() => {
+        console.log('KeyboardV', isKeyboardOpen)
+        setRerender(isKeyboardOpen)
+    }, [isKeyboardOpen]);
+
+    return props.visible ? (
+        <KeyboardAvoidingView
+            //style={styles.keyboardAvoidingContainer}
+            keyboardVerticalOffset={60}
+            //behavior={Platform.OS === 'ios' ? 'height' : 'position'}
+            behavior={'position'}
+        >
+            <View style={styles.container}>
+                <View style={styles.firstContainer}>
+                    {props.icon}
+                    <Text style={styles.messageText}>
+                        {props.message}
+                    </Text>
+                    <Pressable>
+                        <View style={styles.closeImageContainer}>
+                            <Image style={styles.closeImageStyling}
+                                   source={CloseIcon}>
+                            </Image>
+                        </View>
+                    </Pressable>
+                </View>
             </View>
-        </View>
-    ): null
+        </KeyboardAvoidingView>
+    ) : null
+}
+
+function useKeyboard() {
+    const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+    useEffect(() => {
+        const keyboardDidShowListener = Keyboard.addListener(
+            'keyboardDidShow',
+            () => {
+                setKeyboardVisible(true);
+            },
+        );
+
+        const keyboardDidHideListener = Keyboard.addListener(
+            'keyboardDidHide',
+            () => {
+                setKeyboardVisible(false);
+            },
+        );
+
+        return () => {
+            keyboardDidHideListener.remove();
+            keyboardDidShowListener.remove();
+        };
+    }, []);
+
+    return isKeyboardVisible;
 }
 
 const styles = StyleSheet.create({
-    container: {
+    keyboardAvoidingContainer: {
         flex: 1,
+    },
+    container: {
+        flex: 2,
         position: 'absolute',
         marginHorizontal: '7%',
         marginBottom: 50,
